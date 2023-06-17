@@ -45,5 +45,5 @@ async fn main() -> anyhow::Result<()> {
 }
 
 async fn root() -> &'static str {
-    "Hello, Service!"
+    "Hello, coffee!"
 }

@@ -3,6 +3,5 @@
 base: "git@git.front.kjuulh.io:kjuulh/cuddle-base.git"
 
 vars:
-  service: "%%name%%"
+  service: "coffee"
   registry: kasperhermansen
-

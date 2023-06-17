@@ -1,9 +1,9 @@
 [workspace]
-members = ["crates/service"]
+members = ["crates/coffee"]
 resolver = "2"
 
 [workspace.dependencies]
-service = { path = "crates/service" }
+coffee = { path = "crates/coffee" }
 
 anyhow = { version = "1.0.71" }
 tokio = { version = "1", features = ["full"] }
