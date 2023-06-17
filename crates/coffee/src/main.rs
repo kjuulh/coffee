@@ -1,49 +1,26 @@
-use std::net::SocketAddr;
-
-use axum::routing::get;
-use axum::Router;
-use clap::{Parser, Subcommand};
-
-#[derive(Parser)]
-#[command(author, version, about, long_about = None, subcommand_required = true)]
-struct Command {
-    #[command(subcommand)]
-    command: Option<Commands>,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    Serve {
-        #[arg(env = "SERVICE_HOST", long, default_value = "127.0.0.1:3000")]
-        host: SocketAddr,
-    },
-}
+use clap::Command;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     dotenv::dotenv().ok();
     tracing_subscriber::fmt::init();
 
-    let cli = Command::parse();
+    let cli = Command::new("coffee").subcommands(&[repo()]).get_matches();
 
-    match cli.command {
-        Some(Commands::Serve { host }) => {
-            tracing::info!("Starting service");
-
-            let app = Router::new().route("/", get(root));
-
-            tracing::info!("listening on {}", host);
-            axum::Server::bind(&host)
-                .serve(app.into_make_service())
-                .await
-                .unwrap();
-        }
+    match cli.subcommand() {
+        Some(_) => {}
         None => {}
     }
 
     Ok(())
 }
 
-async fn root() -> &'static str {
-    "Hello, coffee!"
+fn repo() -> Command {
+    clap::Command::new("repo")
+        .subcommands(&[repo_create()])
+        .subcommand_help_heading("repo")
+}
+
+fn repo_create() -> Command {
+    clap::Command::new("create")
 }
