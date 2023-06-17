@@ -1,15 +1,16 @@
 # NotificationThread
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **i64** |  | [optional] [default to null]
-**pinned** | **bool** |  | [optional] [default to null]
-**repository** | [***::models::Repository**](Repository.md) |  | [optional] [default to null]
-**subject** | [***::models::NotificationSubject**](NotificationSubject.md) |  | [optional] [default to null]
-**unread** | **bool** |  | [optional] [default to null]
-**updated_at** | **String** |  | [optional] [default to null]
-**url** | **String** |  | [optional] [default to null]
+**id** | Option<**i64**> |  | [optional]
+**pinned** | Option<**bool**> |  | [optional]
+**repository** | Option<[**crate::models::Repository**](Repository.md)> |  | [optional]
+**subject** | Option<[**crate::models::NotificationSubject**](NotificationSubject.md)> |  | [optional]
+**unread** | Option<**bool**> |  | [optional]
+**updated_at** | Option<**String**> |  | [optional]
+**url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,18 +1,19 @@
 # Commit
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**author** | [***::models::User**](User.md) |  | [optional] [default to null]
-**commit** | [***::models::RepoCommit**](RepoCommit.md) |  | [optional] [default to null]
-**committer** | [***::models::User**](User.md) |  | [optional] [default to null]
-**created** | **String** |  | [optional] [default to null]
-**files** | [**Vec<::models::CommitAffectedFiles>**](CommitAffectedFiles.md) |  | [optional] [default to null]
-**html_url** | **String** |  | [optional] [default to null]
-**parents** | [**Vec<::models::CommitMeta>**](CommitMeta.md) |  | [optional] [default to null]
-**sha** | **String** |  | [optional] [default to null]
-**stats** | [***::models::CommitStats**](CommitStats.md) |  | [optional] [default to null]
-**url** | **String** |  | [optional] [default to null]
+**author** | Option<[**crate::models::User**](User.md)> |  | [optional]
+**commit** | Option<[**crate::models::RepoCommit**](RepoCommit.md)> |  | [optional]
+**committer** | Option<[**crate::models::User**](User.md)> |  | [optional]
+**created** | Option<**String**> |  | [optional]
+**files** | Option<[**Vec<crate::models::CommitAffectedFiles>**](CommitAffectedFiles.md)> |  | [optional]
+**html_url** | Option<**String**> |  | [optional]
+**parents** | Option<[**Vec<crate::models::CommitMeta>**](CommitMeta.md)> |  | [optional]
+**sha** | Option<**String**> |  | [optional]
+**stats** | Option<[**crate::models::CommitStats**](CommitStats.md)> |  | [optional]
+**url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

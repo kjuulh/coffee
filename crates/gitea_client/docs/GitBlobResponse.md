@@ -1,13 +1,14 @@
 # GitBlobResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **String** |  | [optional] [default to null]
-**encoding** | **String** |  | [optional] [default to null]
-**sha** | **String** |  | [optional] [default to null]
-**size** | **i64** |  | [optional] [default to null]
-**url** | **String** |  | [optional] [default to null]
+**content** | Option<**String**> |  | [optional]
+**encoding** | Option<**String**> |  | [optional]
+**sha** | Option<**String**> |  | [optional]
+**size** | Option<**i64**> |  | [optional]
+**url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

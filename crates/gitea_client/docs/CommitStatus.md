@@ -1,17 +1,18 @@
 # CommitStatus
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**context** | **String** |  | [optional] [default to null]
-**created_at** | **String** |  | [optional] [default to null]
-**creator** | [***::models::User**](User.md) |  | [optional] [default to null]
-**description** | **String** |  | [optional] [default to null]
-**id** | **i64** |  | [optional] [default to null]
-**status** | [***::models::CommitStatusState**](CommitStatusState.md) |  | [optional] [default to null]
-**target_url** | **String** |  | [optional] [default to null]
-**updated_at** | **String** |  | [optional] [default to null]
-**url** | **String** |  | [optional] [default to null]
+**context** | Option<**String**> |  | [optional]
+**created_at** | Option<**String**> |  | [optional]
+**creator** | Option<[**crate::models::User**](User.md)> |  | [optional]
+**description** | Option<**String**> |  | [optional]
+**id** | Option<**i64**> |  | [optional]
+**status** | Option<**String**> | CommitStatusState holds the state of a CommitStatus It can be \"pending\", \"success\", \"error\", \"failure\", and \"warning\" | [optional]
+**target_url** | Option<**String**> |  | [optional]
+**updated_at** | Option<**String**> |  | [optional]
+**url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

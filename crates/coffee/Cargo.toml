@@ -13,3 +13,5 @@ tracing-subscriber.workspace = true
 clap.workspace = true
 dotenv.workspace = true
 axum.workspace = true
+url = "2.4.0"
+git-url-parse = "0.4.4"

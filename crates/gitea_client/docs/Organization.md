@@ -1,18 +1,19 @@
 # Organization
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**avatar_url** | **String** |  | [optional] [default to null]
-**description** | **String** |  | [optional] [default to null]
-**full_name** | **String** |  | [optional] [default to null]
-**id** | **i64** |  | [optional] [default to null]
-**location** | **String** |  | [optional] [default to null]
-**name** | **String** |  | [optional] [default to null]
-**repo_admin_change_team_access** | **bool** |  | [optional] [default to null]
-**username** | **String** | deprecated | [optional] [default to null]
-**visibility** | **String** |  | [optional] [default to null]
-**website** | **String** |  | [optional] [default to null]
+**avatar_url** | Option<**String**> |  | [optional]
+**description** | Option<**String**> |  | [optional]
+**full_name** | Option<**String**> |  | [optional]
+**id** | Option<**i64**> |  | [optional]
+**location** | Option<**String**> |  | [optional]
+**name** | Option<**String**> |  | [optional]
+**repo_admin_change_team_access** | Option<**bool**> |  | [optional]
+**username** | Option<**String**> | deprecated | [optional]
+**visibility** | Option<**String**> |  | [optional]
+**website** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

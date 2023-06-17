@@ -1,21 +1,22 @@
 # Activity
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**act_user** | [***::models::User**](User.md) |  | [optional] [default to null]
-**act_user_id** | **i64** |  | [optional] [default to null]
-**comment** | [***::models::Comment**](Comment.md) |  | [optional] [default to null]
-**comment_id** | **i64** |  | [optional] [default to null]
-**content** | **String** |  | [optional] [default to null]
-**created** | **String** |  | [optional] [default to null]
-**id** | **i64** |  | [optional] [default to null]
-**is_private** | **bool** |  | [optional] [default to null]
-**op_type** | **String** |  | [optional] [default to null]
-**ref_name** | **String** |  | [optional] [default to null]
-**repo** | [***::models::Repository**](Repository.md) |  | [optional] [default to null]
-**repo_id** | **i64** |  | [optional] [default to null]
-**user_id** | **i64** |  | [optional] [default to null]
+**act_user** | Option<[**crate::models::User**](User.md)> |  | [optional]
+**act_user_id** | Option<**i64**> |  | [optional]
+**comment** | Option<[**crate::models::Comment**](Comment.md)> |  | [optional]
+**comment_id** | Option<**i64**> |  | [optional]
+**content** | Option<**String**> |  | [optional]
+**created** | Option<**String**> |  | [optional]
+**id** | Option<**i64**> |  | [optional]
+**is_private** | Option<**bool**> |  | [optional]
+**op_type** | Option<**String**> |  | [optional]
+**ref_name** | Option<**String**> |  | [optional]
+**repo** | Option<[**crate::models::Repository**](Repository.md)> |  | [optional]
+**repo_id** | Option<**i64**> |  | [optional]
+**user_id** | Option<**i64**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

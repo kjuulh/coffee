@@ -1,17 +1,18 @@
 # UserSettingsOptions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | **String** |  | [optional] [default to null]
-**diff_view_style** | **String** |  | [optional] [default to null]
-**full_name** | **String** |  | [optional] [default to null]
-**hide_activity** | **bool** |  | [optional] [default to null]
-**hide_email** | **bool** | Privacy | [optional] [default to null]
-**language** | **String** |  | [optional] [default to null]
-**location** | **String** |  | [optional] [default to null]
-**theme** | **String** |  | [optional] [default to null]
-**website** | **String** |  | [optional] [default to null]
+**description** | Option<**String**> |  | [optional]
+**diff_view_style** | Option<**String**> |  | [optional]
+**full_name** | Option<**String**> |  | [optional]
+**hide_activity** | Option<**bool**> |  | [optional]
+**hide_email** | Option<**bool**> | Privacy | [optional]
+**language** | Option<**String**> |  | [optional]
+**location** | Option<**String**> |  | [optional]
+**theme** | Option<**String**> |  | [optional]
+**website** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

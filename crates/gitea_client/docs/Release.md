@@ -1,23 +1,24 @@
 # Release
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**Vec<::models::Attachment>**](Attachment.md) |  | [optional] [default to null]
-**author** | [***::models::User**](User.md) |  | [optional] [default to null]
-**body** | **String** |  | [optional] [default to null]
-**created_at** | **String** |  | [optional] [default to null]
-**draft** | **bool** |  | [optional] [default to null]
-**html_url** | **String** |  | [optional] [default to null]
-**id** | **i64** |  | [optional] [default to null]
-**name** | **String** |  | [optional] [default to null]
-**prerelease** | **bool** |  | [optional] [default to null]
-**published_at** | **String** |  | [optional] [default to null]
-**tag_name** | **String** |  | [optional] [default to null]
-**tarball_url** | **String** |  | [optional] [default to null]
-**target_commitish** | **String** |  | [optional] [default to null]
-**url** | **String** |  | [optional] [default to null]
-**zipball_url** | **String** |  | [optional] [default to null]
+**assets** | Option<[**Vec<crate::models::Attachment>**](Attachment.md)> |  | [optional]
+**author** | Option<[**crate::models::User**](User.md)> |  | [optional]
+**body** | Option<**String**> |  | [optional]
+**created_at** | Option<**String**> |  | [optional]
+**draft** | Option<**bool**> |  | [optional]
+**html_url** | Option<**String**> |  | [optional]
+**id** | Option<**i64**> |  | [optional]
+**name** | Option<**String**> |  | [optional]
+**prerelease** | Option<**bool**> |  | [optional]
+**published_at** | Option<**String**> |  | [optional]
+**tag_name** | Option<**String**> |  | [optional]
+**tarball_url** | Option<**String**> |  | [optional]
+**target_commitish** | Option<**String**> |  | [optional]
+**url** | Option<**String**> |  | [optional]
+**zipball_url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

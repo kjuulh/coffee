@@ -1,17 +1,18 @@
 # ChangedFile
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**additions** | **i64** |  | [optional] [default to null]
-**changes** | **i64** |  | [optional] [default to null]
-**contents_url** | **String** |  | [optional] [default to null]
-**deletions** | **i64** |  | [optional] [default to null]
-**filename** | **String** |  | [optional] [default to null]
-**html_url** | **String** |  | [optional] [default to null]
-**previous_filename** | **String** |  | [optional] [default to null]
-**raw_url** | **String** |  | [optional] [default to null]
-**status** | **String** |  | [optional] [default to null]
+**additions** | Option<**i64**> |  | [optional]
+**changes** | Option<**i64**> |  | [optional]
+**contents_url** | Option<**String**> |  | [optional]
+**deletions** | Option<**i64**> |  | [optional]
+**filename** | Option<**String**> |  | [optional]
+**html_url** | Option<**String**> |  | [optional]
+**previous_filename** | Option<**String**> |  | [optional]
+**raw_url** | Option<**String**> |  | [optional]
+**status** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

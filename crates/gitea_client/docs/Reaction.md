@@ -1,11 +1,12 @@
 # Reaction
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **String** |  | [optional] [default to null]
-**created_at** | **String** |  | [optional] [default to null]
-**user** | [***::models::User**](User.md) |  | [optional] [default to null]
+**content** | Option<**String**> |  | [optional]
+**created_at** | Option<**String**> |  | [optional]
+**user** | Option<[**crate::models::User**](User.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

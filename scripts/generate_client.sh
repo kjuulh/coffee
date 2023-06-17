@@ -1,8 +1,8 @@
 #!/bin/bash
 
-docker run --rm -v ${PWD}/crates:/local/ swaggerapi/swagger-codegen-cli generate \
+docker run --rm -v ${PWD}/crates:/local/ openapitools/openapi-generator-cli generate \
     -i https://git.front.kjuulh.io/swagger.v1.json \
-    -l rust \
+    -g rust \
     -o /local/gitea_client
 
 

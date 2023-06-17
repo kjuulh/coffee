@@ -1,11 +1,12 @@
 # CreateTagOption
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message** | **String** |  | [optional] [default to null]
-**tag_name** | **String** |  | [default to null]
-**target** | **String** |  | [optional] [default to null]
+**message** | Option<**String**> |  | [optional]
+**tag_name** | **String** |  | 
+**target** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,13 +1,14 @@
 # Email
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** |  | [optional] [default to null]
-**primary** | **bool** |  | [optional] [default to null]
-**user_id** | **i64** |  | [optional] [default to null]
-**username** | **String** |  | [optional] [default to null]
-**verified** | **bool** |  | [optional] [default to null]
+**email** | Option<**String**> |  | [optional]
+**primary** | Option<**bool**> |  | [optional]
+**user_id** | Option<**i64**> |  | [optional]
+**username** | Option<**String**> |  | [optional]
+**verified** | Option<**bool**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
