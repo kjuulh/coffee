@@ -3321,7 +3321,7 @@ pub async fn repo_create_release(configuration: &configuration::Configuration, o
     }
 }
 
-pub async fn repo_create_release_attachment(configuration: &configuration::Configuration, owner: &str, repo: &str, id: i64, attachment: std::path::PathBuf, name: Option<&str>) -> Result<crate::models::Attachment, Error<RepoCreateReleaseAttachmentError>> {
+pub async fn repo_create_release_attachment(configuration: &configuration::Configuration, owner: &str, repo: &str, id: i64, _attachment: std::path::PathBuf, name: Option<&str>) -> Result<crate::models::Attachment, Error<RepoCreateReleaseAttachmentError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -3386,7 +3386,7 @@ pub async fn repo_create_release_attachment(configuration: &configuration::Confi
     if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
         local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
     };
-    let mut local_var_form = reqwest::multipart::Form::new();
+    let local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'attachment' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
