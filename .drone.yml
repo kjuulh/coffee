@@ -47,6 +47,7 @@ steps:
       DOCKER_PASSWORD:
         from_secret: docker_password
     depends_on:
+      - "build-ci"
       - "load_secret"
 
 services:
