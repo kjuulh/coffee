@@ -38,7 +38,7 @@ steps:
       - name: ci
         path: /mnt/ci
     commands:
-      - ls /mnt/ci
+      - ls /mnt/ci/ci
       - /mnt/ci/ci
     environment:
       DOCKER_BUILDKIT: 1
