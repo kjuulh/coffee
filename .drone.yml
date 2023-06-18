@@ -28,7 +28,7 @@ steps:
      - apt-get update && apt-get install musl-tools -y
      - rustup target add x86_64-unknown-linux-musl
      - cargo build -p ci --target x86_64-unknown-linux-musl
-     - mv target/debug/ci /mnt/ci/ci
+     - mv target/x86_64-unknown-linux-musl/debug/ci /mnt/ci/ci
 
   - name: build
     image: docker:dind
