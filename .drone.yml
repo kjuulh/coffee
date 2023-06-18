@@ -22,8 +22,11 @@ steps:
     volumes:
     - name: ssh
       path: /root/.ssh/
+    - name: ci
+      path: mnt/ci
     commands:
      - cargo build -p ci
+     - mv target/debug/ci /mnt/ci/ci
 
   - name: build
     image: docker:dind
@@ -32,9 +35,11 @@ steps:
         path: /root/.ssh/
       - name: dockersock
         path: /var/run
+      - name: ci
+        path: mnt/ci
     commands:
-      - ls
-      - target/debug/ci
+      - ls /mnt/ci
+      - /mnt/ci/ci
     environment:
       DOCKER_BUILDKIT: 1
       DOCKER_USERNAME:
@@ -57,4 +62,6 @@ volumes:
   - name: ssh
     temp: {}
   - name: dockersock
+    temp: {}
+  - name: ci
     temp: {}
