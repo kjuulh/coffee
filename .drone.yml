@@ -22,6 +22,8 @@ steps:
     volumes:
     - name: ssh
       path: /root/.ssh/
+    - name: build-ci-volume
+      path: /drone/src
     commands:
      - cargo build -p ci
      - cp target/debug/ci /drone/src/ci
@@ -33,7 +35,10 @@ steps:
         path: /root/.ssh/
       - name: dockersock
         path: /var/run
+      - name: build-ci-volume
+        path: /drone/src
     commands:
+      - ls /drone/src  # Verify that the file is copied
       - /drone/src/ci
     environment:
       DOCKER_BUILDKIT: 1
