@@ -23,7 +23,7 @@ steps:
     - name: ssh
       path: /root/.ssh/
     - name: ci
-      path: mnt/ci
+      path: /mnt/ci
     commands:
      - cargo build -p ci
      - mv target/debug/ci /mnt/ci/ci
@@ -36,7 +36,7 @@ steps:
       - name: dockersock
         path: /var/run
       - name: ci
-        path: mnt/ci
+        path: /mnt/ci
     commands:
       - ls /mnt/ci
       - /mnt/ci/ci
