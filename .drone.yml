@@ -23,7 +23,8 @@ steps:
     - name: ssh
       path: /root/.ssh/
     commands:
-      - cargo build -p ci
+     - cargo build -p ci
+     - cp target/debug/ci /drone/src/ci
 
   - name: build
     image: docker:dind
@@ -33,7 +34,7 @@ steps:
       - name: dockersock
         path: /var/run
     commands:
-      - ./target/debug/ci
+      - /drone/src/ci
     environment:
       DOCKER_BUILDKIT: 1
       DOCKER_USERNAME:
