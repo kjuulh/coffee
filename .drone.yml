@@ -33,6 +33,7 @@ steps:
       - name: dockersock
         path: /var/run
     commands:
+      - ls
       - target/debug/ci
     environment:
       DOCKER_BUILDKIT: 1
