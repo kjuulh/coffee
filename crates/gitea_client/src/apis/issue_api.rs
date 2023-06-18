@@ -1111,7 +1111,7 @@ pub async fn issue_create_issue(configuration: &configuration::Configuration, ow
     }
 }
 
-pub async fn issue_create_issue_attachment(configuration: &configuration::Configuration, owner: &str, repo: &str, index: i64, attachment: std::path::PathBuf, name: Option<&str>) -> Result<crate::models::Attachment, Error<IssueCreateIssueAttachmentError>> {
+pub async fn issue_create_issue_attachment(configuration: &configuration::Configuration, owner: &str, repo: &str, index: i64, _attachment: std::path::PathBuf, name: Option<&str>) -> Result<crate::models::Attachment, Error<IssueCreateIssueAttachmentError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1176,7 +1176,7 @@ pub async fn issue_create_issue_attachment(configuration: &configuration::Config
     if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
         local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
     };
-    let mut local_var_form = reqwest::multipart::Form::new();
+    let local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'attachment' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -1274,7 +1274,7 @@ pub async fn issue_create_issue_blocking(configuration: &configuration::Configur
     }
 }
 
-pub async fn issue_create_issue_comment_attachment(configuration: &configuration::Configuration, owner: &str, repo: &str, id: i64, attachment: std::path::PathBuf, name: Option<&str>) -> Result<crate::models::Attachment, Error<IssueCreateIssueCommentAttachmentError>> {
+pub async fn issue_create_issue_comment_attachment(configuration: &configuration::Configuration, owner: &str, repo: &str, id: i64, _attachment: std::path::PathBuf, name: Option<&str>) -> Result<crate::models::Attachment, Error<IssueCreateIssueCommentAttachmentError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1339,7 +1339,7 @@ pub async fn issue_create_issue_comment_attachment(configuration: &configuration
     if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
         local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
     };
-    let mut local_var_form = reqwest::multipart::Form::new();
+    let local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'attachment' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 

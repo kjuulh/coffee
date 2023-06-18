@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use clap::{ArgMatches, Command};
 use git_url_parse::GitUrl;
-use gitea_client::apis::configuration::{ApiKey, Configuration};
+use gitea_client::apis::configuration::Configuration;
 use tracing::Level;
 
 #[tokio::main]
@@ -144,7 +144,7 @@ impl GiteaClient {
 struct Repo {}
 
 impl Repo {
-    pub fn new(gitea_client: Arc<GiteaClient>) -> Self {
+    pub fn new(_gitea_client: Arc<GiteaClient>) -> Self {
         Self {}
     }
 
@@ -159,7 +159,7 @@ impl Repo {
         clap::Command::new("create")
     }
 
-    fn handle_repo(&self, args: &ArgMatches) -> anyhow::Result<()> {
+    fn handle_repo(&self, _args: &ArgMatches) -> anyhow::Result<()> {
         tracing::debug!("command: repo");
         Ok(())
     }
@@ -247,10 +247,13 @@ impl PullRequest {
                 let web = args.get_one::<bool>("web");
 
                 let pull_requests = self.client.list_pull_requests(&owner, &repo, None).await?;
+                if pull_requests.is_empty() {
+                    tracing::info!("no pull request found")
+                }
                 for pull_request in pull_requests {
                     if let Some(head) = pull_request.head {
-                        if let Some(r#ref) = head.r#ref {
-                            if r#ref == branch.trim() {
+                        if let Some(label) = head.label {
+                            if label == branch.trim() {
                                 match web {
                                     Some(true) => {
                                         webbrowser::open(&pull_request.html_url.unwrap())?
@@ -291,6 +294,10 @@ impl PullRequest {
             },
             Some(arg) => arg,
         };
+
+        //
+        //
+        //
 
         Ok(arg.clone())
     }

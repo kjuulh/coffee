@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/coffee", "crates/gitea_client"]
+members = ["crates/coffee", "crates/gitea_client", "ci"]
 resolver = "2"
 
 [workspace.dependencies]
