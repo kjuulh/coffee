@@ -1,11 +1,12 @@
 # Reference
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**object** | [***::models::GitObject**](GitObject.md) |  | [optional] [default to null]
-**_ref** | **String** |  | [optional] [default to null]
-**url** | **String** |  | [optional] [default to null]
+**object** | Option<[**crate::models::GitObject**](GitObject.md)> |  | [optional]
+**r#ref** | Option<**String**> |  | [optional]
+**url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

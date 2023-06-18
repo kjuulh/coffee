@@ -1,532 +1,438 @@
 # \RepositoryApi
 
-All URIs are relative to *http://localhost/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accept_repo_transfer**](RepositoryApi.md#accept_repo_transfer) | **Post** /repos/{owner}/{repo}/transfer/accept | Accept a repo transfer
-[**create_current_user_repo**](RepositoryApi.md#create_current_user_repo) | **Post** /user/repos | Create a repository
-[**create_fork**](RepositoryApi.md#create_fork) | **Post** /repos/{owner}/{repo}/forks | Fork a repository
-[**generate_repo**](RepositoryApi.md#generate_repo) | **Post** /repos/{template_owner}/{template_repo}/generate | Create a repository using a template
-[**get_annotated_tag**](RepositoryApi.md#get_annotated_tag) | **Get** /repos/{owner}/{repo}/git/tags/{sha} | Gets the tag object of an annotated tag (not lightweight tags)
-[**get_blob**](RepositoryApi.md#get_blob) | **Get** /repos/{owner}/{repo}/git/blobs/{sha} | Gets the blob of a repository.
-[**get_tree**](RepositoryApi.md#get_tree) | **Get** /repos/{owner}/{repo}/git/trees/{sha} | Gets the tree of a repository.
-[**list_forks**](RepositoryApi.md#list_forks) | **Get** /repos/{owner}/{repo}/forks | List a repository&#39;s forks
-[**reject_repo_transfer**](RepositoryApi.md#reject_repo_transfer) | **Post** /repos/{owner}/{repo}/transfer/reject | Reject a repo transfer
-[**repo_add_collaborator**](RepositoryApi.md#repo_add_collaborator) | **Put** /repos/{owner}/{repo}/collaborators/{collaborator} | Add a collaborator to a repository
-[**repo_add_push_mirror**](RepositoryApi.md#repo_add_push_mirror) | **Post** /repos/{owner}/{repo}/push_mirrors | add a push mirror to the repository
-[**repo_add_team**](RepositoryApi.md#repo_add_team) | **Put** /repos/{owner}/{repo}/teams/{team} | Add a team to a repository
-[**repo_add_topic**](RepositoryApi.md#repo_add_topic) | **Put** /repos/{owner}/{repo}/topics/{topic} | Add a topic to a repository
-[**repo_apply_diff_patch**](RepositoryApi.md#repo_apply_diff_patch) | **Post** /repos/{owner}/{repo}/diffpatch | Apply diff patch to repository
-[**repo_cancel_scheduled_auto_merge**](RepositoryApi.md#repo_cancel_scheduled_auto_merge) | **Delete** /repos/{owner}/{repo}/pulls/{index}/merge | Cancel the scheduled auto merge for the given pull request
-[**repo_change_files**](RepositoryApi.md#repo_change_files) | **Post** /repos/{owner}/{repo}/contents | Modify multiple files in a repository
-[**repo_check_collaborator**](RepositoryApi.md#repo_check_collaborator) | **Get** /repos/{owner}/{repo}/collaborators/{collaborator} | Check if a user is a collaborator of a repository
-[**repo_check_team**](RepositoryApi.md#repo_check_team) | **Get** /repos/{owner}/{repo}/teams/{team} | Check if a team is assigned to a repository
-[**repo_create_branch**](RepositoryApi.md#repo_create_branch) | **Post** /repos/{owner}/{repo}/branches | Create a branch
-[**repo_create_branch_protection**](RepositoryApi.md#repo_create_branch_protection) | **Post** /repos/{owner}/{repo}/branch_protections | Create a branch protections for a repository
-[**repo_create_file**](RepositoryApi.md#repo_create_file) | **Post** /repos/{owner}/{repo}/contents/{filepath} | Create a file in a repository
-[**repo_create_hook**](RepositoryApi.md#repo_create_hook) | **Post** /repos/{owner}/{repo}/hooks | Create a hook
-[**repo_create_key**](RepositoryApi.md#repo_create_key) | **Post** /repos/{owner}/{repo}/keys | Add a key to a repository
-[**repo_create_pull_request**](RepositoryApi.md#repo_create_pull_request) | **Post** /repos/{owner}/{repo}/pulls | Create a pull request
-[**repo_create_pull_review**](RepositoryApi.md#repo_create_pull_review) | **Post** /repos/{owner}/{repo}/pulls/{index}/reviews | Create a review to an pull request
-[**repo_create_pull_review_requests**](RepositoryApi.md#repo_create_pull_review_requests) | **Post** /repos/{owner}/{repo}/pulls/{index}/requested_reviewers | create review requests for a pull request
-[**repo_create_release**](RepositoryApi.md#repo_create_release) | **Post** /repos/{owner}/{repo}/releases | Create a release
-[**repo_create_release_attachment**](RepositoryApi.md#repo_create_release_attachment) | **Post** /repos/{owner}/{repo}/releases/{id}/assets | Create a release attachment
-[**repo_create_status**](RepositoryApi.md#repo_create_status) | **Post** /repos/{owner}/{repo}/statuses/{sha} | Create a commit status
-[**repo_create_tag**](RepositoryApi.md#repo_create_tag) | **Post** /repos/{owner}/{repo}/tags | Create a new git tag in a repository
-[**repo_create_wiki_page**](RepositoryApi.md#repo_create_wiki_page) | **Post** /repos/{owner}/{repo}/wiki/new | Create a wiki page
-[**repo_delete**](RepositoryApi.md#repo_delete) | **Delete** /repos/{owner}/{repo} | Delete a repository
-[**repo_delete_branch**](RepositoryApi.md#repo_delete_branch) | **Delete** /repos/{owner}/{repo}/branches/{branch} | Delete a specific branch from a repository
-[**repo_delete_branch_protection**](RepositoryApi.md#repo_delete_branch_protection) | **Delete** /repos/{owner}/{repo}/branch_protections/{name} | Delete a specific branch protection for the repository
-[**repo_delete_collaborator**](RepositoryApi.md#repo_delete_collaborator) | **Delete** /repos/{owner}/{repo}/collaborators/{collaborator} | Delete a collaborator from a repository
-[**repo_delete_file**](RepositoryApi.md#repo_delete_file) | **Delete** /repos/{owner}/{repo}/contents/{filepath} | Delete a file in a repository
-[**repo_delete_git_hook**](RepositoryApi.md#repo_delete_git_hook) | **Delete** /repos/{owner}/{repo}/hooks/git/{id} | Delete a Git hook in a repository
-[**repo_delete_hook**](RepositoryApi.md#repo_delete_hook) | **Delete** /repos/{owner}/{repo}/hooks/{id} | Delete a hook in a repository
-[**repo_delete_key**](RepositoryApi.md#repo_delete_key) | **Delete** /repos/{owner}/{repo}/keys/{id} | Delete a key from a repository
-[**repo_delete_pull_review**](RepositoryApi.md#repo_delete_pull_review) | **Delete** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Delete a specific review from a pull request
-[**repo_delete_pull_review_requests**](RepositoryApi.md#repo_delete_pull_review_requests) | **Delete** /repos/{owner}/{repo}/pulls/{index}/requested_reviewers | cancel review requests for a pull request
-[**repo_delete_push_mirror**](RepositoryApi.md#repo_delete_push_mirror) | **Delete** /repos/{owner}/{repo}/push_mirrors/{name} | deletes a push mirror from a repository by remoteName
-[**repo_delete_release**](RepositoryApi.md#repo_delete_release) | **Delete** /repos/{owner}/{repo}/releases/{id} | Delete a release
-[**repo_delete_release_attachment**](RepositoryApi.md#repo_delete_release_attachment) | **Delete** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Delete a release attachment
-[**repo_delete_release_by_tag**](RepositoryApi.md#repo_delete_release_by_tag) | **Delete** /repos/{owner}/{repo}/releases/tags/{tag} | Delete a release by tag name
-[**repo_delete_tag**](RepositoryApi.md#repo_delete_tag) | **Delete** /repos/{owner}/{repo}/tags/{tag} | Delete a repository&#39;s tag by name
-[**repo_delete_team**](RepositoryApi.md#repo_delete_team) | **Delete** /repos/{owner}/{repo}/teams/{team} | Delete a team from a repository
-[**repo_delete_topic**](RepositoryApi.md#repo_delete_topic) | **Delete** /repos/{owner}/{repo}/topics/{topic} | Delete a topic from a repository
-[**repo_delete_wiki_page**](RepositoryApi.md#repo_delete_wiki_page) | **Delete** /repos/{owner}/{repo}/wiki/page/{pageName} | Delete a wiki page
-[**repo_dismiss_pull_review**](RepositoryApi.md#repo_dismiss_pull_review) | **Post** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/dismissals | Dismiss a review for a pull request
-[**repo_download_commit_diff_or_patch**](RepositoryApi.md#repo_download_commit_diff_or_patch) | **Get** /repos/{owner}/{repo}/git/commits/{sha}.{diffType} | Get a commit&#39;s diff or patch
-[**repo_download_pull_diff_or_patch**](RepositoryApi.md#repo_download_pull_diff_or_patch) | **Get** /repos/{owner}/{repo}/pulls/{index}.{diffType} | Get a pull request diff or patch
-[**repo_edit**](RepositoryApi.md#repo_edit) | **Patch** /repos/{owner}/{repo} | Edit a repository&#39;s properties. Only fields that are set will be changed.
-[**repo_edit_branch_protection**](RepositoryApi.md#repo_edit_branch_protection) | **Patch** /repos/{owner}/{repo}/branch_protections/{name} | Edit a branch protections for a repository. Only fields that are set will be changed
-[**repo_edit_git_hook**](RepositoryApi.md#repo_edit_git_hook) | **Patch** /repos/{owner}/{repo}/hooks/git/{id} | Edit a Git hook in a repository
-[**repo_edit_hook**](RepositoryApi.md#repo_edit_hook) | **Patch** /repos/{owner}/{repo}/hooks/{id} | Edit a hook in a repository
-[**repo_edit_pull_request**](RepositoryApi.md#repo_edit_pull_request) | **Patch** /repos/{owner}/{repo}/pulls/{index} | Update a pull request. If using deadline only the date will be taken into account, and time of day ignored.
-[**repo_edit_release**](RepositoryApi.md#repo_edit_release) | **Patch** /repos/{owner}/{repo}/releases/{id} | Update a release
-[**repo_edit_release_attachment**](RepositoryApi.md#repo_edit_release_attachment) | **Patch** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Edit a release attachment
-[**repo_edit_wiki_page**](RepositoryApi.md#repo_edit_wiki_page) | **Patch** /repos/{owner}/{repo}/wiki/page/{pageName} | Edit a wiki page
-[**repo_get**](RepositoryApi.md#repo_get) | **Get** /repos/{owner}/{repo} | Get a repository
-[**repo_get_all_commits**](RepositoryApi.md#repo_get_all_commits) | **Get** /repos/{owner}/{repo}/commits | Get a list of all commits from a repository
-[**repo_get_archive**](RepositoryApi.md#repo_get_archive) | **Get** /repos/{owner}/{repo}/archive/{archive} | Get an archive of a repository
-[**repo_get_assignees**](RepositoryApi.md#repo_get_assignees) | **Get** /repos/{owner}/{repo}/assignees | Return all users that have write access and can be assigned to issues
-[**repo_get_branch**](RepositoryApi.md#repo_get_branch) | **Get** /repos/{owner}/{repo}/branches/{branch} | Retrieve a specific branch from a repository, including its effective branch protection
-[**repo_get_branch_protection**](RepositoryApi.md#repo_get_branch_protection) | **Get** /repos/{owner}/{repo}/branch_protections/{name} | Get a specific branch protection for the repository
-[**repo_get_by_id**](RepositoryApi.md#repo_get_by_id) | **Get** /repositories/{id} | Get a repository by id
-[**repo_get_combined_status_by_ref**](RepositoryApi.md#repo_get_combined_status_by_ref) | **Get** /repos/{owner}/{repo}/commits/{ref}/status | Get a commit&#39;s combined status, by branch/tag/commit reference
-[**repo_get_contents**](RepositoryApi.md#repo_get_contents) | **Get** /repos/{owner}/{repo}/contents/{filepath} | Gets the metadata and contents (if a file) of an entry in a repository, or a list of entries if a dir
-[**repo_get_contents_list**](RepositoryApi.md#repo_get_contents_list) | **Get** /repos/{owner}/{repo}/contents | Gets the metadata of all the entries of the root dir
-[**repo_get_editor_config**](RepositoryApi.md#repo_get_editor_config) | **Get** /repos/{owner}/{repo}/editorconfig/{filepath} | Get the EditorConfig definitions of a file in a repository
-[**repo_get_git_hook**](RepositoryApi.md#repo_get_git_hook) | **Get** /repos/{owner}/{repo}/hooks/git/{id} | Get a Git hook
-[**repo_get_hook**](RepositoryApi.md#repo_get_hook) | **Get** /repos/{owner}/{repo}/hooks/{id} | Get a hook
-[**repo_get_issue_config**](RepositoryApi.md#repo_get_issue_config) | **Get** /repos/{owner}/{repo}/issue_config | Returns the issue config for a repo
-[**repo_get_issue_templates**](RepositoryApi.md#repo_get_issue_templates) | **Get** /repos/{owner}/{repo}/issue_templates | Get available issue templates for a repository
-[**repo_get_key**](RepositoryApi.md#repo_get_key) | **Get** /repos/{owner}/{repo}/keys/{id} | Get a repository&#39;s key by id
-[**repo_get_languages**](RepositoryApi.md#repo_get_languages) | **Get** /repos/{owner}/{repo}/languages | Get languages and number of bytes of code written
-[**repo_get_latest_release**](RepositoryApi.md#repo_get_latest_release) | **Get** /repos/{owner}/{repo}/releases/latest | Gets the most recent non-prerelease, non-draft release of a repository, sorted by created_at
-[**repo_get_note**](RepositoryApi.md#repo_get_note) | **Get** /repos/{owner}/{repo}/git/notes/{sha} | Get a note corresponding to a single commit from a repository
-[**repo_get_pull_request**](RepositoryApi.md#repo_get_pull_request) | **Get** /repos/{owner}/{repo}/pulls/{index} | Get a pull request
-[**repo_get_pull_request_commits**](RepositoryApi.md#repo_get_pull_request_commits) | **Get** /repos/{owner}/{repo}/pulls/{index}/commits | Get commits for a pull request
-[**repo_get_pull_request_files**](RepositoryApi.md#repo_get_pull_request_files) | **Get** /repos/{owner}/{repo}/pulls/{index}/files | Get changed files for a pull request
-[**repo_get_pull_review**](RepositoryApi.md#repo_get_pull_review) | **Get** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Get a specific review for a pull request
-[**repo_get_pull_review_comments**](RepositoryApi.md#repo_get_pull_review_comments) | **Get** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/comments | Get a specific review for a pull request
-[**repo_get_push_mirror_by_remote_name**](RepositoryApi.md#repo_get_push_mirror_by_remote_name) | **Get** /repos/{owner}/{repo}/push_mirrors/{name} | Get push mirror of the repository by remoteName
-[**repo_get_raw_file**](RepositoryApi.md#repo_get_raw_file) | **Get** /repos/{owner}/{repo}/raw/{filepath} | Get a file from a repository
-[**repo_get_raw_file_or_lfs**](RepositoryApi.md#repo_get_raw_file_or_lfs) | **Get** /repos/{owner}/{repo}/media/{filepath} | Get a file or it&#39;s LFS object from a repository
-[**repo_get_release**](RepositoryApi.md#repo_get_release) | **Get** /repos/{owner}/{repo}/releases/{id} | Get a release
-[**repo_get_release_attachment**](RepositoryApi.md#repo_get_release_attachment) | **Get** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Get a release attachment
-[**repo_get_release_by_tag**](RepositoryApi.md#repo_get_release_by_tag) | **Get** /repos/{owner}/{repo}/releases/tags/{tag} | Get a release by tag name
-[**repo_get_repo_permissions**](RepositoryApi.md#repo_get_repo_permissions) | **Get** /repos/{owner}/{repo}/collaborators/{collaborator}/permission | Get repository permissions for a user
-[**repo_get_reviewers**](RepositoryApi.md#repo_get_reviewers) | **Get** /repos/{owner}/{repo}/reviewers | Return all users that can be requested to review in this repo
-[**repo_get_single_commit**](RepositoryApi.md#repo_get_single_commit) | **Get** /repos/{owner}/{repo}/git/commits/{sha} | Get a single commit from a repository
-[**repo_get_tag**](RepositoryApi.md#repo_get_tag) | **Get** /repos/{owner}/{repo}/tags/{tag} | Get the tag of a repository by tag name
-[**repo_get_wiki_page**](RepositoryApi.md#repo_get_wiki_page) | **Get** /repos/{owner}/{repo}/wiki/page/{pageName} | Get a wiki page
-[**repo_get_wiki_page_revisions**](RepositoryApi.md#repo_get_wiki_page_revisions) | **Get** /repos/{owner}/{repo}/wiki/revisions/{pageName} | Get revisions of a wiki page
-[**repo_get_wiki_pages**](RepositoryApi.md#repo_get_wiki_pages) | **Get** /repos/{owner}/{repo}/wiki/pages | Get all wiki pages
-[**repo_list_activity_feeds**](RepositoryApi.md#repo_list_activity_feeds) | **Get** /repos/{owner}/{repo}/activities/feeds | List a repository&#39;s activity feeds
-[**repo_list_all_git_refs**](RepositoryApi.md#repo_list_all_git_refs) | **Get** /repos/{owner}/{repo}/git/refs | Get specified ref or filtered repository&#39;s refs
-[**repo_list_branch_protection**](RepositoryApi.md#repo_list_branch_protection) | **Get** /repos/{owner}/{repo}/branch_protections | List branch protections for a repository
-[**repo_list_branches**](RepositoryApi.md#repo_list_branches) | **Get** /repos/{owner}/{repo}/branches | List a repository&#39;s branches
-[**repo_list_collaborators**](RepositoryApi.md#repo_list_collaborators) | **Get** /repos/{owner}/{repo}/collaborators | List a repository&#39;s collaborators
-[**repo_list_git_hooks**](RepositoryApi.md#repo_list_git_hooks) | **Get** /repos/{owner}/{repo}/hooks/git | List the Git hooks in a repository
-[**repo_list_git_refs**](RepositoryApi.md#repo_list_git_refs) | **Get** /repos/{owner}/{repo}/git/refs/{ref} | Get specified ref or filtered repository&#39;s refs
-[**repo_list_hooks**](RepositoryApi.md#repo_list_hooks) | **Get** /repos/{owner}/{repo}/hooks | List the hooks in a repository
-[**repo_list_keys**](RepositoryApi.md#repo_list_keys) | **Get** /repos/{owner}/{repo}/keys | List a repository&#39;s keys
-[**repo_list_pinned_issues**](RepositoryApi.md#repo_list_pinned_issues) | **Get** /repos/{owner}/{repo}/issues/pinned | List a repo&#39;s pinned issues
-[**repo_list_pinned_pull_requests**](RepositoryApi.md#repo_list_pinned_pull_requests) | **Get** /repos/{owner}/{repo}/pulls/pinned | List a repo&#39;s pinned pull requests
-[**repo_list_pull_requests**](RepositoryApi.md#repo_list_pull_requests) | **Get** /repos/{owner}/{repo}/pulls | List a repo&#39;s pull requests
-[**repo_list_pull_reviews**](RepositoryApi.md#repo_list_pull_reviews) | **Get** /repos/{owner}/{repo}/pulls/{index}/reviews | List all reviews for a pull request
-[**repo_list_push_mirrors**](RepositoryApi.md#repo_list_push_mirrors) | **Get** /repos/{owner}/{repo}/push_mirrors | Get all push mirrors of the repository
-[**repo_list_release_attachments**](RepositoryApi.md#repo_list_release_attachments) | **Get** /repos/{owner}/{repo}/releases/{id}/assets | List release&#39;s attachments
-[**repo_list_releases**](RepositoryApi.md#repo_list_releases) | **Get** /repos/{owner}/{repo}/releases | List a repo&#39;s releases
-[**repo_list_stargazers**](RepositoryApi.md#repo_list_stargazers) | **Get** /repos/{owner}/{repo}/stargazers | List a repo&#39;s stargazers
-[**repo_list_statuses**](RepositoryApi.md#repo_list_statuses) | **Get** /repos/{owner}/{repo}/statuses/{sha} | Get a commit&#39;s statuses
-[**repo_list_statuses_by_ref**](RepositoryApi.md#repo_list_statuses_by_ref) | **Get** /repos/{owner}/{repo}/commits/{ref}/statuses | Get a commit&#39;s statuses, by branch/tag/commit reference
-[**repo_list_subscribers**](RepositoryApi.md#repo_list_subscribers) | **Get** /repos/{owner}/{repo}/subscribers | List a repo&#39;s watchers
-[**repo_list_tags**](RepositoryApi.md#repo_list_tags) | **Get** /repos/{owner}/{repo}/tags | List a repository&#39;s tags
-[**repo_list_teams**](RepositoryApi.md#repo_list_teams) | **Get** /repos/{owner}/{repo}/teams | List a repository&#39;s teams
-[**repo_list_topics**](RepositoryApi.md#repo_list_topics) | **Get** /repos/{owner}/{repo}/topics | Get list of topics that a repository has
-[**repo_merge_pull_request**](RepositoryApi.md#repo_merge_pull_request) | **Post** /repos/{owner}/{repo}/pulls/{index}/merge | Merge a pull request
-[**repo_migrate**](RepositoryApi.md#repo_migrate) | **Post** /repos/migrate | Migrate a remote git repository
-[**repo_mirror_sync**](RepositoryApi.md#repo_mirror_sync) | **Post** /repos/{owner}/{repo}/mirror-sync | Sync a mirrored repository
-[**repo_new_pin_allowed**](RepositoryApi.md#repo_new_pin_allowed) | **Get** /repos/{owner}/{repo}/new_pin_allowed | Returns if new Issue Pins are allowed
-[**repo_pull_request_is_merged**](RepositoryApi.md#repo_pull_request_is_merged) | **Get** /repos/{owner}/{repo}/pulls/{index}/merge | Check if a pull request has been merged
-[**repo_push_mirror_sync**](RepositoryApi.md#repo_push_mirror_sync) | **Post** /repos/{owner}/{repo}/push_mirrors-sync | Sync all push mirrored repository
-[**repo_search**](RepositoryApi.md#repo_search) | **Get** /repos/search | Search for repositories
-[**repo_signing_key**](RepositoryApi.md#repo_signing_key) | **Get** /repos/{owner}/{repo}/signing-key.gpg | Get signing-key.gpg for given repository
-[**repo_submit_pull_review**](RepositoryApi.md#repo_submit_pull_review) | **Post** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Submit a pending review to an pull request
-[**repo_test_hook**](RepositoryApi.md#repo_test_hook) | **Post** /repos/{owner}/{repo}/hooks/{id}/tests | Test a push webhook
-[**repo_tracked_times**](RepositoryApi.md#repo_tracked_times) | **Get** /repos/{owner}/{repo}/times | List a repo&#39;s tracked times
-[**repo_transfer**](RepositoryApi.md#repo_transfer) | **Post** /repos/{owner}/{repo}/transfer | Transfer a repo ownership
-[**repo_un_dismiss_pull_review**](RepositoryApi.md#repo_un_dismiss_pull_review) | **Post** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/undismissals | Cancel to dismiss a review for a pull request
-[**repo_update_file**](RepositoryApi.md#repo_update_file) | **Put** /repos/{owner}/{repo}/contents/{filepath} | Update a file in a repository
-[**repo_update_pull_request**](RepositoryApi.md#repo_update_pull_request) | **Post** /repos/{owner}/{repo}/pulls/{index}/update | Merge PR&#39;s baseBranch into headBranch
-[**repo_update_topics**](RepositoryApi.md#repo_update_topics) | **Put** /repos/{owner}/{repo}/topics | Replace list of topics for a repository
-[**repo_validate_issue_config**](RepositoryApi.md#repo_validate_issue_config) | **Get** /repos/{owner}/{repo}/issue_config/validate | Returns the validation information for a issue config
-[**topic_search**](RepositoryApi.md#topic_search) | **Get** /topics/search | search topics via keyword
-[**user_current_check_subscription**](RepositoryApi.md#user_current_check_subscription) | **Get** /repos/{owner}/{repo}/subscription | Check if the current user is watching a repo
-[**user_current_delete_subscription**](RepositoryApi.md#user_current_delete_subscription) | **Delete** /repos/{owner}/{repo}/subscription | Unwatch a repo
-[**user_current_put_subscription**](RepositoryApi.md#user_current_put_subscription) | **Put** /repos/{owner}/{repo}/subscription | Watch a repo
-[**user_tracked_times**](RepositoryApi.md#user_tracked_times) | **Get** /repos/{owner}/{repo}/times/{user} | List a user&#39;s tracked times in a repo
+[**accept_repo_transfer**](RepositoryApi.md#accept_repo_transfer) | **POST** /repos/{owner}/{repo}/transfer/accept | Accept a repo transfer
+[**create_current_user_repo**](RepositoryApi.md#create_current_user_repo) | **POST** /user/repos | Create a repository
+[**create_fork**](RepositoryApi.md#create_fork) | **POST** /repos/{owner}/{repo}/forks | Fork a repository
+[**generate_repo**](RepositoryApi.md#generate_repo) | **POST** /repos/{template_owner}/{template_repo}/generate | Create a repository using a template
+[**get_annotated_tag**](RepositoryApi.md#get_annotated_tag) | **GET** /repos/{owner}/{repo}/git/tags/{sha} | Gets the tag object of an annotated tag (not lightweight tags)
+[**get_blob**](RepositoryApi.md#get_blob) | **GET** /repos/{owner}/{repo}/git/blobs/{sha} | Gets the blob of a repository.
+[**get_tree**](RepositoryApi.md#get_tree) | **GET** /repos/{owner}/{repo}/git/trees/{sha} | Gets the tree of a repository.
+[**list_forks**](RepositoryApi.md#list_forks) | **GET** /repos/{owner}/{repo}/forks | List a repository's forks
+[**reject_repo_transfer**](RepositoryApi.md#reject_repo_transfer) | **POST** /repos/{owner}/{repo}/transfer/reject | Reject a repo transfer
+[**repo_add_collaborator**](RepositoryApi.md#repo_add_collaborator) | **PUT** /repos/{owner}/{repo}/collaborators/{collaborator} | Add a collaborator to a repository
+[**repo_add_push_mirror**](RepositoryApi.md#repo_add_push_mirror) | **POST** /repos/{owner}/{repo}/push_mirrors | add a push mirror to the repository
+[**repo_add_team**](RepositoryApi.md#repo_add_team) | **PUT** /repos/{owner}/{repo}/teams/{team} | Add a team to a repository
+[**repo_add_topic**](RepositoryApi.md#repo_add_topic) | **PUT** /repos/{owner}/{repo}/topics/{topic} | Add a topic to a repository
+[**repo_apply_diff_patch**](RepositoryApi.md#repo_apply_diff_patch) | **POST** /repos/{owner}/{repo}/diffpatch | Apply diff patch to repository
+[**repo_cancel_scheduled_auto_merge**](RepositoryApi.md#repo_cancel_scheduled_auto_merge) | **DELETE** /repos/{owner}/{repo}/pulls/{index}/merge | Cancel the scheduled auto merge for the given pull request
+[**repo_change_files**](RepositoryApi.md#repo_change_files) | **POST** /repos/{owner}/{repo}/contents | Modify multiple files in a repository
+[**repo_check_collaborator**](RepositoryApi.md#repo_check_collaborator) | **GET** /repos/{owner}/{repo}/collaborators/{collaborator} | Check if a user is a collaborator of a repository
+[**repo_check_team**](RepositoryApi.md#repo_check_team) | **GET** /repos/{owner}/{repo}/teams/{team} | Check if a team is assigned to a repository
+[**repo_create_branch**](RepositoryApi.md#repo_create_branch) | **POST** /repos/{owner}/{repo}/branches | Create a branch
+[**repo_create_branch_protection**](RepositoryApi.md#repo_create_branch_protection) | **POST** /repos/{owner}/{repo}/branch_protections | Create a branch protections for a repository
+[**repo_create_file**](RepositoryApi.md#repo_create_file) | **POST** /repos/{owner}/{repo}/contents/{filepath} | Create a file in a repository
+[**repo_create_hook**](RepositoryApi.md#repo_create_hook) | **POST** /repos/{owner}/{repo}/hooks | Create a hook
+[**repo_create_key**](RepositoryApi.md#repo_create_key) | **POST** /repos/{owner}/{repo}/keys | Add a key to a repository
+[**repo_create_pull_request**](RepositoryApi.md#repo_create_pull_request) | **POST** /repos/{owner}/{repo}/pulls | Create a pull request
+[**repo_create_pull_review**](RepositoryApi.md#repo_create_pull_review) | **POST** /repos/{owner}/{repo}/pulls/{index}/reviews | Create a review to an pull request
+[**repo_create_pull_review_requests**](RepositoryApi.md#repo_create_pull_review_requests) | **POST** /repos/{owner}/{repo}/pulls/{index}/requested_reviewers | create review requests for a pull request
+[**repo_create_release**](RepositoryApi.md#repo_create_release) | **POST** /repos/{owner}/{repo}/releases | Create a release
+[**repo_create_release_attachment**](RepositoryApi.md#repo_create_release_attachment) | **POST** /repos/{owner}/{repo}/releases/{id}/assets | Create a release attachment
+[**repo_create_status**](RepositoryApi.md#repo_create_status) | **POST** /repos/{owner}/{repo}/statuses/{sha} | Create a commit status
+[**repo_create_tag**](RepositoryApi.md#repo_create_tag) | **POST** /repos/{owner}/{repo}/tags | Create a new git tag in a repository
+[**repo_create_wiki_page**](RepositoryApi.md#repo_create_wiki_page) | **POST** /repos/{owner}/{repo}/wiki/new | Create a wiki page
+[**repo_delete**](RepositoryApi.md#repo_delete) | **DELETE** /repos/{owner}/{repo} | Delete a repository
+[**repo_delete_branch**](RepositoryApi.md#repo_delete_branch) | **DELETE** /repos/{owner}/{repo}/branches/{branch} | Delete a specific branch from a repository
+[**repo_delete_branch_protection**](RepositoryApi.md#repo_delete_branch_protection) | **DELETE** /repos/{owner}/{repo}/branch_protections/{name} | Delete a specific branch protection for the repository
+[**repo_delete_collaborator**](RepositoryApi.md#repo_delete_collaborator) | **DELETE** /repos/{owner}/{repo}/collaborators/{collaborator} | Delete a collaborator from a repository
+[**repo_delete_file**](RepositoryApi.md#repo_delete_file) | **DELETE** /repos/{owner}/{repo}/contents/{filepath} | Delete a file in a repository
+[**repo_delete_git_hook**](RepositoryApi.md#repo_delete_git_hook) | **DELETE** /repos/{owner}/{repo}/hooks/git/{id} | Delete a Git hook in a repository
+[**repo_delete_hook**](RepositoryApi.md#repo_delete_hook) | **DELETE** /repos/{owner}/{repo}/hooks/{id} | Delete a hook in a repository
+[**repo_delete_key**](RepositoryApi.md#repo_delete_key) | **DELETE** /repos/{owner}/{repo}/keys/{id} | Delete a key from a repository
+[**repo_delete_pull_review**](RepositoryApi.md#repo_delete_pull_review) | **DELETE** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Delete a specific review from a pull request
+[**repo_delete_pull_review_requests**](RepositoryApi.md#repo_delete_pull_review_requests) | **DELETE** /repos/{owner}/{repo}/pulls/{index}/requested_reviewers | cancel review requests for a pull request
+[**repo_delete_push_mirror**](RepositoryApi.md#repo_delete_push_mirror) | **DELETE** /repos/{owner}/{repo}/push_mirrors/{name} | deletes a push mirror from a repository by remoteName
+[**repo_delete_release**](RepositoryApi.md#repo_delete_release) | **DELETE** /repos/{owner}/{repo}/releases/{id} | Delete a release
+[**repo_delete_release_attachment**](RepositoryApi.md#repo_delete_release_attachment) | **DELETE** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Delete a release attachment
+[**repo_delete_release_by_tag**](RepositoryApi.md#repo_delete_release_by_tag) | **DELETE** /repos/{owner}/{repo}/releases/tags/{tag} | Delete a release by tag name
+[**repo_delete_tag**](RepositoryApi.md#repo_delete_tag) | **DELETE** /repos/{owner}/{repo}/tags/{tag} | Delete a repository's tag by name
+[**repo_delete_team**](RepositoryApi.md#repo_delete_team) | **DELETE** /repos/{owner}/{repo}/teams/{team} | Delete a team from a repository
+[**repo_delete_topic**](RepositoryApi.md#repo_delete_topic) | **DELETE** /repos/{owner}/{repo}/topics/{topic} | Delete a topic from a repository
+[**repo_delete_wiki_page**](RepositoryApi.md#repo_delete_wiki_page) | **DELETE** /repos/{owner}/{repo}/wiki/page/{pageName} | Delete a wiki page
+[**repo_dismiss_pull_review**](RepositoryApi.md#repo_dismiss_pull_review) | **POST** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/dismissals | Dismiss a review for a pull request
+[**repo_download_commit_diff_or_patch**](RepositoryApi.md#repo_download_commit_diff_or_patch) | **GET** /repos/{owner}/{repo}/git/commits/{sha}.{diffType} | Get a commit's diff or patch
+[**repo_download_pull_diff_or_patch**](RepositoryApi.md#repo_download_pull_diff_or_patch) | **GET** /repos/{owner}/{repo}/pulls/{index}.{diffType} | Get a pull request diff or patch
+[**repo_edit**](RepositoryApi.md#repo_edit) | **PATCH** /repos/{owner}/{repo} | Edit a repository's properties. Only fields that are set will be changed.
+[**repo_edit_branch_protection**](RepositoryApi.md#repo_edit_branch_protection) | **PATCH** /repos/{owner}/{repo}/branch_protections/{name} | Edit a branch protections for a repository. Only fields that are set will be changed
+[**repo_edit_git_hook**](RepositoryApi.md#repo_edit_git_hook) | **PATCH** /repos/{owner}/{repo}/hooks/git/{id} | Edit a Git hook in a repository
+[**repo_edit_hook**](RepositoryApi.md#repo_edit_hook) | **PATCH** /repos/{owner}/{repo}/hooks/{id} | Edit a hook in a repository
+[**repo_edit_pull_request**](RepositoryApi.md#repo_edit_pull_request) | **PATCH** /repos/{owner}/{repo}/pulls/{index} | Update a pull request. If using deadline only the date will be taken into account, and time of day ignored.
+[**repo_edit_release**](RepositoryApi.md#repo_edit_release) | **PATCH** /repos/{owner}/{repo}/releases/{id} | Update a release
+[**repo_edit_release_attachment**](RepositoryApi.md#repo_edit_release_attachment) | **PATCH** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Edit a release attachment
+[**repo_edit_wiki_page**](RepositoryApi.md#repo_edit_wiki_page) | **PATCH** /repos/{owner}/{repo}/wiki/page/{pageName} | Edit a wiki page
+[**repo_get**](RepositoryApi.md#repo_get) | **GET** /repos/{owner}/{repo} | Get a repository
+[**repo_get_all_commits**](RepositoryApi.md#repo_get_all_commits) | **GET** /repos/{owner}/{repo}/commits | Get a list of all commits from a repository
+[**repo_get_archive**](RepositoryApi.md#repo_get_archive) | **GET** /repos/{owner}/{repo}/archive/{archive} | Get an archive of a repository
+[**repo_get_assignees**](RepositoryApi.md#repo_get_assignees) | **GET** /repos/{owner}/{repo}/assignees | Return all users that have write access and can be assigned to issues
+[**repo_get_branch**](RepositoryApi.md#repo_get_branch) | **GET** /repos/{owner}/{repo}/branches/{branch} | Retrieve a specific branch from a repository, including its effective branch protection
+[**repo_get_branch_protection**](RepositoryApi.md#repo_get_branch_protection) | **GET** /repos/{owner}/{repo}/branch_protections/{name} | Get a specific branch protection for the repository
+[**repo_get_by_id**](RepositoryApi.md#repo_get_by_id) | **GET** /repositories/{id} | Get a repository by id
+[**repo_get_combined_status_by_ref**](RepositoryApi.md#repo_get_combined_status_by_ref) | **GET** /repos/{owner}/{repo}/commits/{ref}/status | Get a commit's combined status, by branch/tag/commit reference
+[**repo_get_contents**](RepositoryApi.md#repo_get_contents) | **GET** /repos/{owner}/{repo}/contents/{filepath} | Gets the metadata and contents (if a file) of an entry in a repository, or a list of entries if a dir
+[**repo_get_contents_list**](RepositoryApi.md#repo_get_contents_list) | **GET** /repos/{owner}/{repo}/contents | Gets the metadata of all the entries of the root dir
+[**repo_get_editor_config**](RepositoryApi.md#repo_get_editor_config) | **GET** /repos/{owner}/{repo}/editorconfig/{filepath} | Get the EditorConfig definitions of a file in a repository
+[**repo_get_git_hook**](RepositoryApi.md#repo_get_git_hook) | **GET** /repos/{owner}/{repo}/hooks/git/{id} | Get a Git hook
+[**repo_get_hook**](RepositoryApi.md#repo_get_hook) | **GET** /repos/{owner}/{repo}/hooks/{id} | Get a hook
+[**repo_get_issue_config**](RepositoryApi.md#repo_get_issue_config) | **GET** /repos/{owner}/{repo}/issue_config | Returns the issue config for a repo
+[**repo_get_issue_templates**](RepositoryApi.md#repo_get_issue_templates) | **GET** /repos/{owner}/{repo}/issue_templates | Get available issue templates for a repository
+[**repo_get_key**](RepositoryApi.md#repo_get_key) | **GET** /repos/{owner}/{repo}/keys/{id} | Get a repository's key by id
+[**repo_get_languages**](RepositoryApi.md#repo_get_languages) | **GET** /repos/{owner}/{repo}/languages | Get languages and number of bytes of code written
+[**repo_get_latest_release**](RepositoryApi.md#repo_get_latest_release) | **GET** /repos/{owner}/{repo}/releases/latest | Gets the most recent non-prerelease, non-draft release of a repository, sorted by created_at
+[**repo_get_note**](RepositoryApi.md#repo_get_note) | **GET** /repos/{owner}/{repo}/git/notes/{sha} | Get a note corresponding to a single commit from a repository
+[**repo_get_pull_request**](RepositoryApi.md#repo_get_pull_request) | **GET** /repos/{owner}/{repo}/pulls/{index} | Get a pull request
+[**repo_get_pull_request_commits**](RepositoryApi.md#repo_get_pull_request_commits) | **GET** /repos/{owner}/{repo}/pulls/{index}/commits | Get commits for a pull request
+[**repo_get_pull_request_files**](RepositoryApi.md#repo_get_pull_request_files) | **GET** /repos/{owner}/{repo}/pulls/{index}/files | Get changed files for a pull request
+[**repo_get_pull_review**](RepositoryApi.md#repo_get_pull_review) | **GET** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Get a specific review for a pull request
+[**repo_get_pull_review_comments**](RepositoryApi.md#repo_get_pull_review_comments) | **GET** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/comments | Get a specific review for a pull request
+[**repo_get_push_mirror_by_remote_name**](RepositoryApi.md#repo_get_push_mirror_by_remote_name) | **GET** /repos/{owner}/{repo}/push_mirrors/{name} | Get push mirror of the repository by remoteName
+[**repo_get_raw_file**](RepositoryApi.md#repo_get_raw_file) | **GET** /repos/{owner}/{repo}/raw/{filepath} | Get a file from a repository
+[**repo_get_raw_file_or_lfs**](RepositoryApi.md#repo_get_raw_file_or_lfs) | **GET** /repos/{owner}/{repo}/media/{filepath} | Get a file or it's LFS object from a repository
+[**repo_get_release**](RepositoryApi.md#repo_get_release) | **GET** /repos/{owner}/{repo}/releases/{id} | Get a release
+[**repo_get_release_attachment**](RepositoryApi.md#repo_get_release_attachment) | **GET** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Get a release attachment
+[**repo_get_release_by_tag**](RepositoryApi.md#repo_get_release_by_tag) | **GET** /repos/{owner}/{repo}/releases/tags/{tag} | Get a release by tag name
+[**repo_get_repo_permissions**](RepositoryApi.md#repo_get_repo_permissions) | **GET** /repos/{owner}/{repo}/collaborators/{collaborator}/permission | Get repository permissions for a user
+[**repo_get_reviewers**](RepositoryApi.md#repo_get_reviewers) | **GET** /repos/{owner}/{repo}/reviewers | Return all users that can be requested to review in this repo
+[**repo_get_single_commit**](RepositoryApi.md#repo_get_single_commit) | **GET** /repos/{owner}/{repo}/git/commits/{sha} | Get a single commit from a repository
+[**repo_get_tag**](RepositoryApi.md#repo_get_tag) | **GET** /repos/{owner}/{repo}/tags/{tag} | Get the tag of a repository by tag name
+[**repo_get_wiki_page**](RepositoryApi.md#repo_get_wiki_page) | **GET** /repos/{owner}/{repo}/wiki/page/{pageName} | Get a wiki page
+[**repo_get_wiki_page_revisions**](RepositoryApi.md#repo_get_wiki_page_revisions) | **GET** /repos/{owner}/{repo}/wiki/revisions/{pageName} | Get revisions of a wiki page
+[**repo_get_wiki_pages**](RepositoryApi.md#repo_get_wiki_pages) | **GET** /repos/{owner}/{repo}/wiki/pages | Get all wiki pages
+[**repo_list_activity_feeds**](RepositoryApi.md#repo_list_activity_feeds) | **GET** /repos/{owner}/{repo}/activities/feeds | List a repository's activity feeds
+[**repo_list_all_git_refs**](RepositoryApi.md#repo_list_all_git_refs) | **GET** /repos/{owner}/{repo}/git/refs | Get specified ref or filtered repository's refs
+[**repo_list_branch_protection**](RepositoryApi.md#repo_list_branch_protection) | **GET** /repos/{owner}/{repo}/branch_protections | List branch protections for a repository
+[**repo_list_branches**](RepositoryApi.md#repo_list_branches) | **GET** /repos/{owner}/{repo}/branches | List a repository's branches
+[**repo_list_collaborators**](RepositoryApi.md#repo_list_collaborators) | **GET** /repos/{owner}/{repo}/collaborators | List a repository's collaborators
+[**repo_list_git_hooks**](RepositoryApi.md#repo_list_git_hooks) | **GET** /repos/{owner}/{repo}/hooks/git | List the Git hooks in a repository
+[**repo_list_git_refs**](RepositoryApi.md#repo_list_git_refs) | **GET** /repos/{owner}/{repo}/git/refs/{ref} | Get specified ref or filtered repository's refs
+[**repo_list_hooks**](RepositoryApi.md#repo_list_hooks) | **GET** /repos/{owner}/{repo}/hooks | List the hooks in a repository
+[**repo_list_keys**](RepositoryApi.md#repo_list_keys) | **GET** /repos/{owner}/{repo}/keys | List a repository's keys
+[**repo_list_pinned_issues**](RepositoryApi.md#repo_list_pinned_issues) | **GET** /repos/{owner}/{repo}/issues/pinned | List a repo's pinned issues
+[**repo_list_pinned_pull_requests**](RepositoryApi.md#repo_list_pinned_pull_requests) | **GET** /repos/{owner}/{repo}/pulls/pinned | List a repo's pinned pull requests
+[**repo_list_pull_requests**](RepositoryApi.md#repo_list_pull_requests) | **GET** /repos/{owner}/{repo}/pulls | List a repo's pull requests
+[**repo_list_pull_reviews**](RepositoryApi.md#repo_list_pull_reviews) | **GET** /repos/{owner}/{repo}/pulls/{index}/reviews | List all reviews for a pull request
+[**repo_list_push_mirrors**](RepositoryApi.md#repo_list_push_mirrors) | **GET** /repos/{owner}/{repo}/push_mirrors | Get all push mirrors of the repository
+[**repo_list_release_attachments**](RepositoryApi.md#repo_list_release_attachments) | **GET** /repos/{owner}/{repo}/releases/{id}/assets | List release's attachments
+[**repo_list_releases**](RepositoryApi.md#repo_list_releases) | **GET** /repos/{owner}/{repo}/releases | List a repo's releases
+[**repo_list_stargazers**](RepositoryApi.md#repo_list_stargazers) | **GET** /repos/{owner}/{repo}/stargazers | List a repo's stargazers
+[**repo_list_statuses**](RepositoryApi.md#repo_list_statuses) | **GET** /repos/{owner}/{repo}/statuses/{sha} | Get a commit's statuses
+[**repo_list_statuses_by_ref**](RepositoryApi.md#repo_list_statuses_by_ref) | **GET** /repos/{owner}/{repo}/commits/{ref}/statuses | Get a commit's statuses, by branch/tag/commit reference
+[**repo_list_subscribers**](RepositoryApi.md#repo_list_subscribers) | **GET** /repos/{owner}/{repo}/subscribers | List a repo's watchers
+[**repo_list_tags**](RepositoryApi.md#repo_list_tags) | **GET** /repos/{owner}/{repo}/tags | List a repository's tags
+[**repo_list_teams**](RepositoryApi.md#repo_list_teams) | **GET** /repos/{owner}/{repo}/teams | List a repository's teams
+[**repo_list_topics**](RepositoryApi.md#repo_list_topics) | **GET** /repos/{owner}/{repo}/topics | Get list of topics that a repository has
+[**repo_merge_pull_request**](RepositoryApi.md#repo_merge_pull_request) | **POST** /repos/{owner}/{repo}/pulls/{index}/merge | Merge a pull request
+[**repo_migrate**](RepositoryApi.md#repo_migrate) | **POST** /repos/migrate | Migrate a remote git repository
+[**repo_mirror_sync**](RepositoryApi.md#repo_mirror_sync) | **POST** /repos/{owner}/{repo}/mirror-sync | Sync a mirrored repository
+[**repo_new_pin_allowed**](RepositoryApi.md#repo_new_pin_allowed) | **GET** /repos/{owner}/{repo}/new_pin_allowed | Returns if new Issue Pins are allowed
+[**repo_pull_request_is_merged**](RepositoryApi.md#repo_pull_request_is_merged) | **GET** /repos/{owner}/{repo}/pulls/{index}/merge | Check if a pull request has been merged
+[**repo_push_mirror_sync**](RepositoryApi.md#repo_push_mirror_sync) | **POST** /repos/{owner}/{repo}/push_mirrors-sync | Sync all push mirrored repository
+[**repo_search**](RepositoryApi.md#repo_search) | **GET** /repos/search | Search for repositories
+[**repo_signing_key**](RepositoryApi.md#repo_signing_key) | **GET** /repos/{owner}/{repo}/signing-key.gpg | Get signing-key.gpg for given repository
+[**repo_submit_pull_review**](RepositoryApi.md#repo_submit_pull_review) | **POST** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Submit a pending review to an pull request
+[**repo_test_hook**](RepositoryApi.md#repo_test_hook) | **POST** /repos/{owner}/{repo}/hooks/{id}/tests | Test a push webhook
+[**repo_tracked_times**](RepositoryApi.md#repo_tracked_times) | **GET** /repos/{owner}/{repo}/times | List a repo's tracked times
+[**repo_transfer**](RepositoryApi.md#repo_transfer) | **POST** /repos/{owner}/{repo}/transfer | Transfer a repo ownership
+[**repo_un_dismiss_pull_review**](RepositoryApi.md#repo_un_dismiss_pull_review) | **POST** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/undismissals | Cancel to dismiss a review for a pull request
+[**repo_update_file**](RepositoryApi.md#repo_update_file) | **PUT** /repos/{owner}/{repo}/contents/{filepath} | Update a file in a repository
+[**repo_update_pull_request**](RepositoryApi.md#repo_update_pull_request) | **POST** /repos/{owner}/{repo}/pulls/{index}/update | Merge PR's baseBranch into headBranch
+[**repo_update_topics**](RepositoryApi.md#repo_update_topics) | **PUT** /repos/{owner}/{repo}/topics | Replace list of topics for a repository
+[**repo_validate_issue_config**](RepositoryApi.md#repo_validate_issue_config) | **GET** /repos/{owner}/{repo}/issue_config/validate | Returns the validation information for a issue config
+[**topic_search**](RepositoryApi.md#topic_search) | **GET** /topics/search | search topics via keyword
+[**user_current_check_subscription**](RepositoryApi.md#user_current_check_subscription) | **GET** /repos/{owner}/{repo}/subscription | Check if the current user is watching a repo
+[**user_current_delete_subscription**](RepositoryApi.md#user_current_delete_subscription) | **DELETE** /repos/{owner}/{repo}/subscription | Unwatch a repo
+[**user_current_put_subscription**](RepositoryApi.md#user_current_put_subscription) | **PUT** /repos/{owner}/{repo}/subscription | Watch a repo
+[**user_tracked_times**](RepositoryApi.md#user_tracked_times) | **GET** /repos/{owner}/{repo}/times/{user} | List a user's tracked times in a repo
 
 
-# **accept_repo_transfer**
-> ::models::Repository accept_repo_transfer(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## accept_repo_transfer
+
+> crate::models::Repository accept_repo_transfer(owner, repo)
 Accept a repo transfer
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to transfer | 
-  **repo** | **String**| name of the repo to transfer | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to transfer | [required] |
+**repo** | **String** | name of the repo to transfer | [required] |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_current_user_repo**
-> ::models::Repository create_current_user_repo(ctx, ctx, ctx, ctx, ctx, ctx, ctx, optional)
+
+## create_current_user_repo
+
+> crate::models::Repository create_current_user_repo(body)
 Create a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CreateRepoOption**](CreateRepoOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**body** | Option<[**CreateRepoOption**](CreateRepoOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_fork**
-> ::models::Repository create_fork(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## create_fork
+
+> crate::models::Repository create_fork(owner, repo, body)
 Fork a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to fork | 
-  **repo** | **String**| name of the repo to fork | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo to fork | 
- **repo** | **String**| name of the repo to fork | 
- **body** | [**CreateForkOption**](CreateForkOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to fork | [required] |
+**repo** | **String** | name of the repo to fork | [required] |
+**body** | Option<[**CreateForkOption**](CreateForkOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **generate_repo**
-> ::models::Repository generate_repo(ctx, ctx, ctx, ctx, ctx, ctx, ctx, template_owner, template_repo, optional)
+
+## generate_repo
+
+> crate::models::Repository generate_repo(template_owner, template_repo, body)
 Create a repository using a template
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **template_owner** | **String**| name of the template repository owner | 
-  **template_repo** | **String**| name of the template repository | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **template_owner** | **String**| name of the template repository owner | 
- **template_repo** | **String**| name of the template repository | 
- **body** | [**GenerateRepoOption**](GenerateRepoOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**template_owner** | **String** | name of the template repository owner | [required] |
+**template_repo** | **String** | name of the template repository | [required] |
+**body** | Option<[**GenerateRepoOption**](GenerateRepoOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_annotated_tag**
-> ::models::AnnotatedTag get_annotated_tag(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha)
+
+## get_annotated_tag
+
+> crate::models::AnnotatedTag get_annotated_tag(owner, repo, sha)
 Gets the tag object of an annotated tag (not lightweight tags)
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| sha of the tag. The Git tags API only supports annotated tag objects, not lightweight tags. | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | sha of the tag. The Git tags API only supports annotated tag objects, not lightweight tags. | [required] |
 
 ### Return type
 
-[**::models::AnnotatedTag**](AnnotatedTag.md)
+[**crate::models::AnnotatedTag**](AnnotatedTag.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_blob**
-> ::models::GitBlobResponse get_blob(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha)
+
+## get_blob
+
+> crate::models::GitBlobResponse get_blob(owner, repo, sha)
 Gets the blob of a repository.
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| sha of the commit | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | sha of the commit | [required] |
 
 ### Return type
 
-[**::models::GitBlobResponse**](GitBlobResponse.md)
+[**crate::models::GitBlobResponse**](GitBlobResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_tree**
-> ::models::GitTreeResponse get_tree(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha, optional)
+
+## get_tree
+
+> crate::models::GitTreeResponse get_tree(owner, repo, sha, recursive, page, per_page)
 Gets the tree of a repository.
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| sha of the commit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **sha** | **String**| sha of the commit | 
- **recursive** | **bool**| show all directories and files | 
- **page** | **i32**| page number; the &#39;truncated&#39; field in the response will be true if there are still more items after this page, false if the last page | 
- **per_page** | **i32**| number of items per page | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | sha of the commit | [required] |
+**recursive** | Option<**bool**> | show all directories and files |  |
+**page** | Option<**i32**> | page number; the 'truncated' field in the response will be true if there are still more items after this page, false if the last page |  |
+**per_page** | Option<**i32**> | number of items per page |  |
 
 ### Return type
 
-[**::models::GitTreeResponse**](GitTreeResponse.md)
+[**crate::models::GitTreeResponse**](GitTreeResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_forks**
-> Vec<::models::Repository> list_forks(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## list_forks
+
+> Vec<crate::models::Repository> list_forks(owner, repo, page, limit)
 List a repository's forks
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::Repository>**](Repository.md)
+[**Vec<crate::models::Repository>**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **reject_repo_transfer**
-> ::models::Repository reject_repo_transfer(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## reject_repo_transfer
+
+> crate::models::Repository reject_repo_transfer(owner, repo)
 Reject a repo transfer
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to transfer | 
-  **repo** | **String**| name of the repo to transfer | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to transfer | [required] |
+**repo** | **String** | name of the repo to transfer | [required] |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_add_collaborator**
-> repo_add_collaborator(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, collaborator, optional)
+
+## repo_add_collaborator
+
+> repo_add_collaborator(owner, repo, collaborator, body)
 Add a collaborator to a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **collaborator** | **String**| username of the collaborator to add | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **collaborator** | **String**| username of the collaborator to add | 
- **body** | [**AddCollaboratorOption**](AddCollaboratorOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**collaborator** | **String** | username of the collaborator to add | [required] |
+**body** | Option<[**AddCollaboratorOption**](AddCollaboratorOption.md)> |  |  |
 
 ### Return type
 
@@ -534,76 +440,59 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_add_push_mirror**
-> ::models::PushMirror repo_add_push_mirror(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_add_push_mirror
+
+> crate::models::PushMirror repo_add_push_mirror(owner, repo, body)
 add a push mirror to the repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreatePushMirrorOption**](CreatePushMirrorOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreatePushMirrorOption**](CreatePushMirrorOption.md)> |  |  |
 
 ### Return type
 
-[**::models::PushMirror**](PushMirror.md)
+[**crate::models::PushMirror**](PushMirror.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_add_team**
-> repo_add_team(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, team)
+
+## repo_add_team
+
+> repo_add_team(owner, repo, team)
 Add a team to a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **team** | **String**| team name | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**team** | **String** | team name | [required] |
 
 ### Return type
 
@@ -611,33 +500,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_add_topic**
-> repo_add_topic(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, topic)
+
+## repo_add_topic
+
+> repo_add_topic(owner, repo, topic)
 Add a topic to a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **topic** | **String**| name of the topic to add | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**topic** | **String** | name of the topic to add | [required] |
 
 ### Return type
 
@@ -645,67 +530,59 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_apply_diff_patch**
-> ::models::FileResponse repo_apply_diff_patch(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, body)
+
+## repo_apply_diff_patch
+
+> crate::models::FileResponse repo_apply_diff_patch(owner, repo, body)
 Apply diff patch to repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **body** | [**UpdateFileOptions**](UpdateFileOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | [**UpdateFileOptions**](UpdateFileOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::FileResponse**](FileResponse.md)
+[**crate::models::FileResponse**](FileResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_cancel_scheduled_auto_merge**
-> repo_cancel_scheduled_auto_merge(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index)
+
+## repo_cancel_scheduled_auto_merge
+
+> repo_cancel_scheduled_auto_merge(owner, repo, index)
 Cancel the scheduled auto merge for the given pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to merge | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to merge | [required] |
 
 ### Return type
 
@@ -713,67 +590,59 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_change_files**
-> ::models::FilesResponse repo_change_files(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, body)
+
+## repo_change_files
+
+> crate::models::FilesResponse repo_change_files(owner, repo, body)
 Modify multiple files in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **body** | [**ChangeFilesOptions**](ChangeFilesOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | [**ChangeFilesOptions**](ChangeFilesOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::FilesResponse**](FilesResponse.md)
+[**crate::models::FilesResponse**](FilesResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_check_collaborator**
-> repo_check_collaborator(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, collaborator)
+
+## repo_check_collaborator
+
+> repo_check_collaborator(owner, repo, collaborator)
 Check if a user is a collaborator of a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **collaborator** | **String**| username of the collaborator | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**collaborator** | **String** | username of the collaborator | [required] |
 
 ### Return type
 
@@ -781,607 +650,454 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_check_team**
-> ::models::Team repo_check_team(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, team)
+
+## repo_check_team
+
+> crate::models::Team repo_check_team(owner, repo, team)
 Check if a team is assigned to a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **team** | **String**| team name | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**team** | **String** | team name | [required] |
 
 ### Return type
 
-[**::models::Team**](Team.md)
+[**crate::models::Team**](Team.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_branch**
-> ::models::Branch repo_create_branch(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_branch
+
+> crate::models::Branch repo_create_branch(owner, repo, body)
 Create a branch
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateBranchRepoOption**](CreateBranchRepoOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateBranchRepoOption**](CreateBranchRepoOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Branch**](Branch.md)
+[**crate::models::Branch**](Branch.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_branch_protection**
-> ::models::BranchProtection repo_create_branch_protection(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_branch_protection
+
+> crate::models::BranchProtection repo_create_branch_protection(owner, repo, body)
 Create a branch protections for a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateBranchProtectionOption**](CreateBranchProtectionOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateBranchProtectionOption**](CreateBranchProtectionOption.md)> |  |  |
 
 ### Return type
 
-[**::models::BranchProtection**](BranchProtection.md)
+[**crate::models::BranchProtection**](BranchProtection.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_file**
-> ::models::FileResponse repo_create_file(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, body)
+
+## repo_create_file
+
+> crate::models::FileResponse repo_create_file(owner, repo, filepath, body)
 Create a file in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| path of the file to create | 
-  **body** | [**CreateFileOptions**](CreateFileOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | path of the file to create | [required] |
+**body** | [**CreateFileOptions**](CreateFileOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::FileResponse**](FileResponse.md)
+[**crate::models::FileResponse**](FileResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_hook**
-> ::models::Hook repo_create_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_hook
+
+> crate::models::Hook repo_create_hook(owner, repo, body)
 Create a hook
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateHookOption**](CreateHookOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateHookOption**](CreateHookOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Hook**](Hook.md)
+[**crate::models::Hook**](Hook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_key**
-> ::models::DeployKey repo_create_key(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_key
+
+> crate::models::DeployKey repo_create_key(owner, repo, body)
 Add a key to a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateKeyOption**](CreateKeyOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateKeyOption**](CreateKeyOption.md)> |  |  |
 
 ### Return type
 
-[**::models::DeployKey**](DeployKey.md)
+[**crate::models::DeployKey**](DeployKey.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_pull_request**
-> ::models::PullRequest repo_create_pull_request(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_pull_request
+
+> crate::models::PullRequest repo_create_pull_request(owner, repo, body)
 Create a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreatePullRequestOption**](CreatePullRequestOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreatePullRequestOption**](CreatePullRequestOption.md)> |  |  |
 
 ### Return type
 
-[**::models::PullRequest**](PullRequest.md)
+[**crate::models::PullRequest**](PullRequest.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_pull_review**
-> ::models::PullReview repo_create_pull_review(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, body)
+
+## repo_create_pull_review
+
+> crate::models::PullReview repo_create_pull_review(owner, repo, index, body)
 Create a review to an pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **body** | [**CreatePullReviewOptions**](CreatePullReviewOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**body** | [**CreatePullReviewOptions**](CreatePullReviewOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::PullReview**](PullReview.md)
+[**crate::models::PullReview**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_pull_review_requests**
-> Vec<::models::PullReview> repo_create_pull_review_requests(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, body)
+
+## repo_create_pull_review_requests
+
+> Vec<crate::models::PullReview> repo_create_pull_review_requests(owner, repo, index, body)
 create review requests for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **body** | [**PullReviewRequestOptions**](PullReviewRequestOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**body** | [**PullReviewRequestOptions**](PullReviewRequestOptions.md) |  | [required] |
 
 ### Return type
 
-[**Vec<::models::PullReview>**](PullReview.md)
+[**Vec<crate::models::PullReview>**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_release**
-> ::models::Release repo_create_release(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_release
+
+> crate::models::Release repo_create_release(owner, repo, body)
 Create a release
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateReleaseOption**](CreateReleaseOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateReleaseOption**](CreateReleaseOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Release**](Release.md)
+[**crate::models::Release**](Release.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_release_attachment**
-> ::models::Attachment repo_create_release_attachment(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, attachment, optional)
+
+## repo_create_release_attachment
+
+> crate::models::Attachment repo_create_release_attachment(owner, repo, id, attachment, name)
 Create a release attachment
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release | 
-  **attachment** | **File**| attachment to upload | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **id** | **i64**| id of the release | 
- **attachment** | **File**| attachment to upload | 
- **name** | **String**| name of the attachment | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release | [required] |
+**attachment** | **std::path::PathBuf** | attachment to upload | [required] |
+**name** | Option<**String**> | name of the attachment |  |
 
 ### Return type
 
-[**::models::Attachment**](Attachment.md)
+[**crate::models::Attachment**](Attachment.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_status**
-> ::models::CommitStatus repo_create_status(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha, optional)
+
+## repo_create_status
+
+> crate::models::CommitStatus repo_create_status(owner, repo, sha, body)
 Create a commit status
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| sha of the commit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **sha** | **String**| sha of the commit | 
- **body** | [**CreateStatusOption**](CreateStatusOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | sha of the commit | [required] |
+**body** | Option<[**CreateStatusOption**](CreateStatusOption.md)> |  |  |
 
 ### Return type
 
-[**::models::CommitStatus**](CommitStatus.md)
+[**crate::models::CommitStatus**](CommitStatus.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_tag**
-> ::models::Tag repo_create_tag(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_tag
+
+> crate::models::Tag repo_create_tag(owner, repo, body)
 Create a new git tag in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateTagOption**](CreateTagOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateTagOption**](CreateTagOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Tag**](Tag.md)
+[**crate::models::Tag**](Tag.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_create_wiki_page**
-> ::models::WikiPage repo_create_wiki_page(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_create_wiki_page
+
+> crate::models::WikiPage repo_create_wiki_page(owner, repo, body)
 Create a wiki page
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**CreateWikiPageOptions**](CreateWikiPageOptions.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**CreateWikiPageOptions**](CreateWikiPageOptions.md)> |  |  |
 
 ### Return type
 
-[**::models::WikiPage**](WikiPage.md)
+[**crate::models::WikiPage**](WikiPage.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json, text/html
+- **Content-Type**: application/json
+- **Accept**: application/json, text/html
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete**
-> repo_delete(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_delete
+
+> repo_delete(owner, repo)
 Delete a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to delete | 
-  **repo** | **String**| name of the repo to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to delete | [required] |
+**repo** | **String** | name of the repo to delete | [required] |
 
 ### Return type
 
@@ -1389,33 +1105,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_branch**
-> repo_delete_branch(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, branch)
+
+## repo_delete_branch
+
+> repo_delete_branch(owner, repo, branch)
 Delete a specific branch from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **branch** | **String**| branch to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**branch** | **String** | branch to delete | [required] |
 
 ### Return type
 
@@ -1423,33 +1135,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_branch_protection**
-> repo_delete_branch_protection(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, name)
+
+## repo_delete_branch_protection
+
+> repo_delete_branch_protection(owner, repo, name)
 Delete a specific branch protection for the repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **name** | **String**| name of protected branch | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**name** | **String** | name of protected branch | [required] |
 
 ### Return type
 
@@ -1457,33 +1165,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_collaborator**
-> repo_delete_collaborator(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, collaborator)
+
+## repo_delete_collaborator
+
+> repo_delete_collaborator(owner, repo, collaborator)
 Delete a collaborator from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **collaborator** | **String**| username of the collaborator to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**collaborator** | **String** | username of the collaborator to delete | [required] |
 
 ### Return type
 
@@ -1491,68 +1195,60 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_file**
-> ::models::FileDeleteResponse repo_delete_file(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, body)
+
+## repo_delete_file
+
+> crate::models::FileDeleteResponse repo_delete_file(owner, repo, filepath, body)
 Delete a file in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| path of the file to delete | 
-  **body** | [**DeleteFileOptions**](DeleteFileOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | path of the file to delete | [required] |
+**body** | [**DeleteFileOptions**](DeleteFileOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::FileDeleteResponse**](FileDeleteResponse.md)
+[**crate::models::FileDeleteResponse**](FileDeleteResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_git_hook**
-> repo_delete_git_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_delete_git_hook
+
+> repo_delete_git_hook(owner, repo, id)
 Delete a Git hook in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **String**| id of the hook to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **String** | id of the hook to get | [required] |
 
 ### Return type
 
@@ -1560,33 +1256,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_hook**
-> repo_delete_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_delete_hook
+
+> repo_delete_hook(owner, repo, id)
 Delete a hook in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the hook to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the hook to delete | [required] |
 
 ### Return type
 
@@ -1594,33 +1286,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_key**
-> repo_delete_key(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_delete_key
+
+> repo_delete_key(owner, repo, id)
 Delete a key from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the key to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the key to delete | [required] |
 
 ### Return type
 
@@ -1628,34 +1316,30 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_pull_review**
-> repo_delete_pull_review(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, id)
+
+## repo_delete_pull_review
+
+> repo_delete_pull_review(owner, repo, index, id)
 Delete a specific review from a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **id** | **i64**| id of the review | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**id** | **i64** | id of the review | [required] |
 
 ### Return type
 
@@ -1663,34 +1347,30 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_pull_review_requests**
-> repo_delete_pull_review_requests(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, body)
+
+## repo_delete_pull_review_requests
+
+> repo_delete_pull_review_requests(owner, repo, index, body)
 cancel review requests for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **body** | [**PullReviewRequestOptions**](PullReviewRequestOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**body** | [**PullReviewRequestOptions**](PullReviewRequestOptions.md) |  | [required] |
 
 ### Return type
 
@@ -1698,33 +1378,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_push_mirror**
-> repo_delete_push_mirror(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, name)
+
+## repo_delete_push_mirror
+
+> repo_delete_push_mirror(owner, repo, name)
 deletes a push mirror from a repository by remoteName
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **name** | **String**| remote name of the pushMirror | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**name** | **String** | remote name of the pushMirror | [required] |
 
 ### Return type
 
@@ -1732,33 +1408,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_release**
-> repo_delete_release(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_delete_release
+
+> repo_delete_release(owner, repo, id)
 Delete a release
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release to delete | [required] |
 
 ### Return type
 
@@ -1766,34 +1438,30 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_release_attachment**
-> repo_delete_release_attachment(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, attachment_id)
+
+## repo_delete_release_attachment
+
+> repo_delete_release_attachment(owner, repo, id, attachment_id)
 Delete a release attachment
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release | 
-  **attachment_id** | **i64**| id of the attachment to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release | [required] |
+**attachment_id** | **i64** | id of the attachment to delete | [required] |
 
 ### Return type
 
@@ -1801,33 +1469,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_release_by_tag**
-> repo_delete_release_by_tag(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, tag)
+
+## repo_delete_release_by_tag
+
+> repo_delete_release_by_tag(owner, repo, tag)
 Delete a release by tag name
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **tag** | **String**| tag name of the release to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**tag** | **String** | tag name of the release to delete | [required] |
 
 ### Return type
 
@@ -1835,33 +1499,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_tag**
-> repo_delete_tag(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, tag)
+
+## repo_delete_tag
+
+> repo_delete_tag(owner, repo, tag)
 Delete a repository's tag by name
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **tag** | **String**| name of tag to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**tag** | **String** | name of tag to delete | [required] |
 
 ### Return type
 
@@ -1869,33 +1529,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_team**
-> repo_delete_team(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, team)
+
+## repo_delete_team
+
+> repo_delete_team(owner, repo, team)
 Delete a team from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **team** | **String**| team name | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**team** | **String** | team name | [required] |
 
 ### Return type
 
@@ -1903,33 +1559,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_topic**
-> repo_delete_topic(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, topic)
+
+## repo_delete_topic
+
+> repo_delete_topic(owner, repo, topic)
 Delete a topic from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **topic** | **String**| name of the topic to delete | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**topic** | **String** | name of the topic to delete | [required] |
 
 ### Return type
 
@@ -1937,33 +1589,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_delete_wiki_page**
-> repo_delete_wiki_page(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, page_name)
+
+## repo_delete_wiki_page
+
+> repo_delete_wiki_page(owner, repo, page_name)
 Delete a wiki page
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **page_name** | **String**| name of the page | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page_name** | **String** | name of the page | [required] |
 
 ### Return type
 
@@ -1971,70 +1619,62 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_dismiss_pull_review**
-> ::models::PullReview repo_dismiss_pull_review(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, id, body)
+
+## repo_dismiss_pull_review
+
+> crate::models::PullReview repo_dismiss_pull_review(owner, repo, index, id, body)
 Dismiss a review for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **id** | **i64**| id of the review | 
-  **body** | [**DismissPullReviewOptions**](DismissPullReviewOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**id** | **i64** | id of the review | [required] |
+**body** | [**DismissPullReviewOptions**](DismissPullReviewOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::PullReview**](PullReview.md)
+[**crate::models::PullReview**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_download_commit_diff_or_patch**
-> String repo_download_commit_diff_or_patch(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha, diff_type)
+
+## repo_download_commit_diff_or_patch
+
+> String repo_download_commit_diff_or_patch(owner, repo, sha, diff_type)
 Get a commit's diff or patch
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| SHA of the commit to get | 
-  **diff_type** | **String**| whether the output is diff or patch | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | SHA of the commit to get | [required] |
+**diff_type** | **String** | whether the output is diff or patch | [required] |
 
 ### Return type
 
@@ -2042,46 +1682,31 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: text/plain
+- **Content-Type**: Not defined
+- **Accept**: text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_download_pull_diff_or_patch**
-> String repo_download_pull_diff_or_patch(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, diff_type, optional)
+
+## repo_download_pull_diff_or_patch
+
+> String repo_download_pull_diff_or_patch(owner, repo, index, diff_type, binary)
 Get a pull request diff or patch
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to get | 
-  **diff_type** | **String**| whether the output is diff or patch | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request to get | 
- **diff_type** | **String**| whether the output is diff or patch | 
- **binary** | **bool**| whether to include binary file changes. if true, the diff is applicable with &#x60;git apply&#x60; | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to get | [required] |
+**diff_type** | **String** | whether the output is diff or patch | [required] |
+**binary** | Option<**bool**> | whether to include binary file changes. if true, the diff is applicable with `git apply` |  |
 
 ### Return type
 
@@ -2089,476 +1714,343 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: text/plain
+- **Content-Type**: Not defined
+- **Accept**: text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit**
-> ::models::Repository repo_edit(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_edit
+
+> crate::models::Repository repo_edit(owner, repo, body)
 Edit a repository's properties. Only fields that are set will be changed.
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to edit | 
-  **repo** | **String**| name of the repo to edit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo to edit | 
- **repo** | **String**| name of the repo to edit | 
- **body** | [**EditRepoOption**](EditRepoOption.md)| Properties of a repo that you can edit | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to edit | [required] |
+**repo** | **String** | name of the repo to edit | [required] |
+**body** | Option<[**EditRepoOption**](EditRepoOption.md)> | Properties of a repo that you can edit |  |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_branch_protection**
-> ::models::BranchProtection repo_edit_branch_protection(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, name, optional)
+
+## repo_edit_branch_protection
+
+> crate::models::BranchProtection repo_edit_branch_protection(owner, repo, name, body)
 Edit a branch protections for a repository. Only fields that are set will be changed
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **name** | **String**| name of protected branch | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **name** | **String**| name of protected branch | 
- **body** | [**EditBranchProtectionOption**](EditBranchProtectionOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**name** | **String** | name of protected branch | [required] |
+**body** | Option<[**EditBranchProtectionOption**](EditBranchProtectionOption.md)> |  |  |
 
 ### Return type
 
-[**::models::BranchProtection**](BranchProtection.md)
+[**crate::models::BranchProtection**](BranchProtection.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_git_hook**
-> ::models::GitHook repo_edit_git_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, optional)
+
+## repo_edit_git_hook
+
+> crate::models::GitHook repo_edit_git_hook(owner, repo, id, body)
 Edit a Git hook in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **String**| id of the hook to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **id** | **String**| id of the hook to get | 
- **body** | [**EditGitHookOption**](EditGitHookOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **String** | id of the hook to get | [required] |
+**body** | Option<[**EditGitHookOption**](EditGitHookOption.md)> |  |  |
 
 ### Return type
 
-[**::models::GitHook**](GitHook.md)
+[**crate::models::GitHook**](GitHook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_hook**
-> ::models::Hook repo_edit_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, optional)
+
+## repo_edit_hook
+
+> crate::models::Hook repo_edit_hook(owner, repo, id, body)
 Edit a hook in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| index of the hook | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **id** | **i64**| index of the hook | 
- **body** | [**EditHookOption**](EditHookOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | index of the hook | [required] |
+**body** | Option<[**EditHookOption**](EditHookOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Hook**](Hook.md)
+[**crate::models::Hook**](Hook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_pull_request**
-> ::models::PullRequest repo_edit_pull_request(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, optional)
+
+## repo_edit_pull_request
+
+> crate::models::PullRequest repo_edit_pull_request(owner, repo, index, body)
 Update a pull request. If using deadline only the date will be taken into account, and time of day ignored.
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to edit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request to edit | 
- **body** | [**EditPullRequestOption**](EditPullRequestOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to edit | [required] |
+**body** | Option<[**EditPullRequestOption**](EditPullRequestOption.md)> |  |  |
 
 ### Return type
 
-[**::models::PullRequest**](PullRequest.md)
+[**crate::models::PullRequest**](PullRequest.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_release**
-> ::models::Release repo_edit_release(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, optional)
+
+## repo_edit_release
+
+> crate::models::Release repo_edit_release(owner, repo, id, body)
 Update a release
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release to edit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **id** | **i64**| id of the release to edit | 
- **body** | [**EditReleaseOption**](EditReleaseOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release to edit | [required] |
+**body** | Option<[**EditReleaseOption**](EditReleaseOption.md)> |  |  |
 
 ### Return type
 
-[**::models::Release**](Release.md)
+[**crate::models::Release**](Release.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_release_attachment**
-> ::models::Attachment repo_edit_release_attachment(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, attachment_id, optional)
+
+## repo_edit_release_attachment
+
+> crate::models::Attachment repo_edit_release_attachment(owner, repo, id, attachment_id, body)
 Edit a release attachment
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release | 
-  **attachment_id** | **i64**| id of the attachment to edit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **id** | **i64**| id of the release | 
- **attachment_id** | **i64**| id of the attachment to edit | 
- **body** | [**EditAttachmentOptions**](EditAttachmentOptions.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release | [required] |
+**attachment_id** | **i64** | id of the attachment to edit | [required] |
+**body** | Option<[**EditAttachmentOptions**](EditAttachmentOptions.md)> |  |  |
 
 ### Return type
 
-[**::models::Attachment**](Attachment.md)
+[**crate::models::Attachment**](Attachment.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_edit_wiki_page**
-> ::models::WikiPage repo_edit_wiki_page(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, page_name, optional)
+
+## repo_edit_wiki_page
+
+> crate::models::WikiPage repo_edit_wiki_page(owner, repo, page_name, body)
 Edit a wiki page
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **page_name** | **String**| name of the page | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page_name** | **String**| name of the page | 
- **body** | [**CreateWikiPageOptions**](CreateWikiPageOptions.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page_name** | **String** | name of the page | [required] |
+**body** | Option<[**CreateWikiPageOptions**](CreateWikiPageOptions.md)> |  |  |
 
 ### Return type
 
-[**::models::WikiPage**](WikiPage.md)
+[**crate::models::WikiPage**](WikiPage.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json, text/html
+- **Content-Type**: application/json
+- **Accept**: application/json, text/html
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get**
-> ::models::Repository repo_get(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get
+
+> crate::models::Repository repo_get(owner, repo)
 Get a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_all_commits**
-> Vec<::models::Commit> repo_get_all_commits(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_get_all_commits
+
+> Vec<crate::models::Commit> repo_get_all_commits(owner, repo, sha, path, stat, verification, files, page, limit, not)
 Get a list of all commits from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **sha** | **String**| SHA or branch to start listing commits from (usually &#39;master&#39;) | 
- **path** | **String**| filepath of a file/dir | 
- **stat** | **bool**| include diff stats for every commit (disable for speedup, default &#39;true&#39;) | 
- **verification** | **bool**| include verification for every commit (disable for speedup, default &#39;true&#39;) | 
- **files** | **bool**| include a list of affected files for every commit (disable for speedup, default &#39;true&#39;) | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results (ignored if used with &#39;path&#39;) | 
- **not** | **String**| commits that match the given specifier will not be listed. | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | Option<**String**> | SHA or branch to start listing commits from (usually 'master') |  |
+**path** | Option<**String**> | filepath of a file/dir |  |
+**stat** | Option<**bool**> | include diff stats for every commit (disable for speedup, default 'true') |  |
+**verification** | Option<**bool**> | include verification for every commit (disable for speedup, default 'true') |  |
+**files** | Option<**bool**> | include a list of affected files for every commit (disable for speedup, default 'true') |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results (ignored if used with 'path') |  |
+**not** | Option<**String**> | commits that match the given specifier will not be listed. |  |
 
 ### Return type
 
-[**Vec<::models::Commit>**](Commit.md)
+[**Vec<crate::models::Commit>**](Commit.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_archive**
-> repo_get_archive(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, archive)
+
+## repo_get_archive
+
+> repo_get_archive(owner, repo, archive)
 Get an archive of a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **archive** | **String**| the git reference for download with attached archive format (e.g. master.zip) | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**archive** | **String** | the git reference for download with attached archive format (e.g. master.zip) | [required] |
 
 ### Return type
 
@@ -2566,311 +2058,240 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_assignees**
-> Vec<::models::User> repo_get_assignees(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get_assignees
+
+> Vec<crate::models::User> repo_get_assignees(owner, repo)
 Return all users that have write access and can be assigned to issues
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::User>**](User.md)
+[**Vec<crate::models::User>**](User.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_branch**
-> ::models::Branch repo_get_branch(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, branch)
+
+## repo_get_branch
+
+> crate::models::Branch repo_get_branch(owner, repo, branch)
 Retrieve a specific branch from a repository, including its effective branch protection
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **branch** | **String**| branch to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**branch** | **String** | branch to get | [required] |
 
 ### Return type
 
-[**::models::Branch**](Branch.md)
+[**crate::models::Branch**](Branch.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_branch_protection**
-> ::models::BranchProtection repo_get_branch_protection(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, name)
+
+## repo_get_branch_protection
+
+> crate::models::BranchProtection repo_get_branch_protection(owner, repo, name)
 Get a specific branch protection for the repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **name** | **String**| name of protected branch | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**name** | **String** | name of protected branch | [required] |
 
 ### Return type
 
-[**::models::BranchProtection**](BranchProtection.md)
+[**crate::models::BranchProtection**](BranchProtection.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_by_id**
-> ::models::Repository repo_get_by_id(ctx, ctx, ctx, ctx, ctx, ctx, ctx, id)
+
+## repo_get_by_id
+
+> crate::models::Repository repo_get_by_id(id)
 Get a repository by id
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **id** | **i64**| id of the repo to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **i64** | id of the repo to get | [required] |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_combined_status_by_ref**
-> ::models::CombinedStatus repo_get_combined_status_by_ref(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, _ref, optional)
+
+## repo_get_combined_status_by_ref
+
+> crate::models::CombinedStatus repo_get_combined_status_by_ref(owner, repo, r#ref, page, limit)
 Get a commit's combined status, by branch/tag/commit reference
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **_ref** | **String**| name of branch/tag/commit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **_ref** | **String**| name of branch/tag/commit | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**r#ref** | **String** | name of branch/tag/commit | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**::models::CombinedStatus**](CombinedStatus.md)
+[**crate::models::CombinedStatus**](CombinedStatus.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_contents**
-> ::models::ContentsResponse repo_get_contents(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, optional)
+
+## repo_get_contents
+
+> crate::models::ContentsResponse repo_get_contents(owner, repo, filepath, r#ref)
 Gets the metadata and contents (if a file) of an entry in a repository, or a list of entries if a dir
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| path of the dir, file, symlink or submodule in the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **filepath** | **String**| path of the dir, file, symlink or submodule in the repo | 
- **_ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | path of the dir, file, symlink or submodule in the repo | [required] |
+**r#ref** | Option<**String**> | The name of the commit/branch/tag. Default the repository’s default branch (usually master) |  |
 
 ### Return type
 
-[**::models::ContentsResponse**](ContentsResponse.md)
+[**crate::models::ContentsResponse**](ContentsResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_contents_list**
-> Vec<::models::ContentsResponse> repo_get_contents_list(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_get_contents_list
+
+> Vec<crate::models::ContentsResponse> repo_get_contents_list(owner, repo, r#ref)
 Gets the metadata of all the entries of the root dir
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **_ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**r#ref** | Option<**String**> | The name of the commit/branch/tag. Default the repository’s default branch (usually master) |  |
 
 ### Return type
 
-[**Vec<::models::ContentsResponse>**](ContentsResponse.md)
+[**Vec<crate::models::ContentsResponse>**](ContentsResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_editor_config**
-> repo_get_editor_config(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, optional)
+
+## repo_get_editor_config
+
+> repo_get_editor_config(owner, repo, filepath, r#ref)
 Get the EditorConfig definitions of a file in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| filepath of file to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **filepath** | **String**| filepath of file to get | 
- **_ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | filepath of file to get | [required] |
+**r#ref** | Option<**String**> | The name of the commit/branch/tag. Default the repository’s default branch (usually master) |  |
 
 ### Return type
 
@@ -2878,200 +2299,176 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_git_hook**
-> ::models::GitHook repo_get_git_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_get_git_hook
+
+> crate::models::GitHook repo_get_git_hook(owner, repo, id)
 Get a Git hook
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **String**| id of the hook to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **String** | id of the hook to get | [required] |
 
 ### Return type
 
-[**::models::GitHook**](GitHook.md)
+[**crate::models::GitHook**](GitHook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_hook**
-> ::models::Hook repo_get_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_get_hook
+
+> crate::models::Hook repo_get_hook(owner, repo, id)
 Get a hook
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the hook to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the hook to get | [required] |
 
 ### Return type
 
-[**::models::Hook**](Hook.md)
+[**crate::models::Hook**](Hook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_issue_config**
-> ::models::IssueConfig repo_get_issue_config(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get_issue_config
+
+> crate::models::IssueConfig repo_get_issue_config(owner, repo)
 Returns the issue config for a repo
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::IssueConfig**](IssueConfig.md)
+[**crate::models::IssueConfig**](IssueConfig.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_issue_templates**
-> Vec<::models::IssueTemplate> repo_get_issue_templates(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get_issue_templates
+
+> Vec<crate::models::IssueTemplate> repo_get_issue_templates(owner, repo)
 Get available issue templates for a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::IssueTemplate>**](IssueTemplate.md)
+[**Vec<crate::models::IssueTemplate>**](IssueTemplate.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_key**
-> ::models::DeployKey repo_get_key(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_get_key
+
+> crate::models::DeployKey repo_get_key(owner, repo, id)
 Get a repository's key by id
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the key to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the key to get | [required] |
 
 ### Return type
 
-[**::models::DeployKey**](DeployKey.md)
+[**crate::models::DeployKey**](DeployKey.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_languages**
-> ::std::collections::HashMap<String, i64> repo_get_languages(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get_languages
+
+> ::std::collections::HashMap<String, i64> repo_get_languages(owner, repo)
 Get languages and number of bytes of code written
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
@@ -3079,343 +2476,277 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_latest_release**
-> ::models::Release repo_get_latest_release(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get_latest_release
+
+> crate::models::Release repo_get_latest_release(owner, repo)
 Gets the most recent non-prerelease, non-draft release of a repository, sorted by created_at
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::Release**](Release.md)
+[**crate::models::Release**](Release.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_note**
-> ::models::Note repo_get_note(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha)
+
+## repo_get_note
+
+> crate::models::Note repo_get_note(owner, repo, sha)
 Get a note corresponding to a single commit from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| a git ref or commit sha | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | a git ref or commit sha | [required] |
 
 ### Return type
 
-[**::models::Note**](Note.md)
+[**crate::models::Note**](Note.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_pull_request**
-> ::models::PullRequest repo_get_pull_request(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index)
+
+## repo_get_pull_request
+
+> crate::models::PullRequest repo_get_pull_request(owner, repo, index)
 Get a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to get | [required] |
 
 ### Return type
 
-[**::models::PullRequest**](PullRequest.md)
+[**crate::models::PullRequest**](PullRequest.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_pull_request_commits**
-> Vec<::models::Commit> repo_get_pull_request_commits(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, optional)
+
+## repo_get_pull_request_commits
+
+> Vec<crate::models::Commit> repo_get_pull_request_commits(owner, repo, index, page, limit)
 Get commits for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request to get | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to get | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::Commit>**](Commit.md)
+[**Vec<crate::models::Commit>**](Commit.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_pull_request_files**
-> Vec<::models::ChangedFile> repo_get_pull_request_files(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, optional)
+
+## repo_get_pull_request_files
+
+> Vec<crate::models::ChangedFile> repo_get_pull_request_files(owner, repo, index, skip_to, whitespace, page, limit)
 Get changed files for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request to get | 
- **skip_to** | **String**| skip to given file | 
- **whitespace** | **String**| whitespace behavior | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to get | [required] |
+**skip_to** | Option<**String**> | skip to given file |  |
+**whitespace** | Option<**String**> | whitespace behavior |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::ChangedFile>**](ChangedFile.md)
+[**Vec<crate::models::ChangedFile>**](ChangedFile.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_pull_review**
-> ::models::PullReview repo_get_pull_review(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, id)
+
+## repo_get_pull_review
+
+> crate::models::PullReview repo_get_pull_review(owner, repo, index, id)
 Get a specific review for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **id** | **i64**| id of the review | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**id** | **i64** | id of the review | [required] |
 
 ### Return type
 
-[**::models::PullReview**](PullReview.md)
+[**crate::models::PullReview**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_pull_review_comments**
-> Vec<::models::PullReviewComment> repo_get_pull_review_comments(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, id)
+
+## repo_get_pull_review_comments
+
+> Vec<crate::models::PullReviewComment> repo_get_pull_review_comments(owner, repo, index, id)
 Get a specific review for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **id** | **i64**| id of the review | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**id** | **i64** | id of the review | [required] |
 
 ### Return type
 
-[**Vec<::models::PullReviewComment>**](PullReviewComment.md)
+[**Vec<crate::models::PullReviewComment>**](PullReviewComment.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_push_mirror_by_remote_name**
-> ::models::PushMirror repo_get_push_mirror_by_remote_name(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, name)
+
+## repo_get_push_mirror_by_remote_name
+
+> crate::models::PushMirror repo_get_push_mirror_by_remote_name(owner, repo, name)
 Get push mirror of the repository by remoteName
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **name** | **String**| remote name of push mirror | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**name** | **String** | remote name of push mirror | [required] |
 
 ### Return type
 
-[**::models::PushMirror**](PushMirror.md)
+[**crate::models::PushMirror**](PushMirror.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_raw_file**
-> repo_get_raw_file(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, optional)
+
+## repo_get_raw_file
+
+> repo_get_raw_file(owner, repo, filepath, r#ref)
 Get a file from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| filepath of the file to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **filepath** | **String**| filepath of the file to get | 
- **_ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | filepath of the file to get | [required] |
+**r#ref** | Option<**String**> | The name of the commit/branch/tag. Default the repository’s default branch (usually master) |  |
 
 ### Return type
 
@@ -3423,44 +2754,30 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_raw_file_or_lfs**
-> repo_get_raw_file_or_lfs(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, optional)
+
+## repo_get_raw_file_or_lfs
+
+> repo_get_raw_file_or_lfs(owner, repo, filepath, r#ref)
 Get a file or it's LFS object from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| filepath of the file to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **filepath** | **String**| filepath of the file to get | 
- **_ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | filepath of the file to get | [required] |
+**r#ref** | Option<**String**> | The name of the commit/branch/tag. Default the repository’s default branch (usually master) |  |
 
 ### Return type
 
@@ -3468,1364 +2785,1051 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_release**
-> ::models::Release repo_get_release(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_get_release
+
+> crate::models::Release repo_get_release(owner, repo, id)
 Get a release
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release to get | [required] |
 
 ### Return type
 
-[**::models::Release**](Release.md)
+[**crate::models::Release**](Release.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_release_attachment**
-> ::models::Attachment repo_get_release_attachment(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, attachment_id)
+
+## repo_get_release_attachment
+
+> crate::models::Attachment repo_get_release_attachment(owner, repo, id, attachment_id)
 Get a release attachment
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release | 
-  **attachment_id** | **i64**| id of the attachment to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release | [required] |
+**attachment_id** | **i64** | id of the attachment to get | [required] |
 
 ### Return type
 
-[**::models::Attachment**](Attachment.md)
+[**crate::models::Attachment**](Attachment.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_release_by_tag**
-> ::models::Release repo_get_release_by_tag(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, tag)
+
+## repo_get_release_by_tag
+
+> crate::models::Release repo_get_release_by_tag(owner, repo, tag)
 Get a release by tag name
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **tag** | **String**| tag name of the release to get | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**tag** | **String** | tag name of the release to get | [required] |
 
 ### Return type
 
-[**::models::Release**](Release.md)
+[**crate::models::Release**](Release.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_repo_permissions**
-> ::models::RepoCollaboratorPermission repo_get_repo_permissions(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, collaborator)
+
+## repo_get_repo_permissions
+
+> crate::models::RepoCollaboratorPermission repo_get_repo_permissions(owner, repo, collaborator)
 Get repository permissions for a user
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **collaborator** | **String**| username of the collaborator | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**collaborator** | **String** | username of the collaborator | [required] |
 
 ### Return type
 
-[**::models::RepoCollaboratorPermission**](RepoCollaboratorPermission.md)
+[**crate::models::RepoCollaboratorPermission**](RepoCollaboratorPermission.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_reviewers**
-> Vec<::models::User> repo_get_reviewers(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_get_reviewers
+
+> Vec<crate::models::User> repo_get_reviewers(owner, repo)
 Return all users that can be requested to review in this repo
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::User>**](User.md)
+[**Vec<crate::models::User>**](User.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_single_commit**
-> ::models::Commit repo_get_single_commit(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha, optional)
+
+## repo_get_single_commit
+
+> crate::models::Commit repo_get_single_commit(owner, repo, sha, stat, verification, files)
 Get a single commit from a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| a git ref or commit sha | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **sha** | **String**| a git ref or commit sha | 
- **stat** | **bool**| include diff stats for every commit (disable for speedup, default &#39;true&#39;) | 
- **verification** | **bool**| include verification for every commit (disable for speedup, default &#39;true&#39;) | 
- **files** | **bool**| include a list of affected files for every commit (disable for speedup, default &#39;true&#39;) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | a git ref or commit sha | [required] |
+**stat** | Option<**bool**> | include diff stats for every commit (disable for speedup, default 'true') |  |
+**verification** | Option<**bool**> | include verification for every commit (disable for speedup, default 'true') |  |
+**files** | Option<**bool**> | include a list of affected files for every commit (disable for speedup, default 'true') |  |
 
 ### Return type
 
-[**::models::Commit**](Commit.md)
+[**crate::models::Commit**](Commit.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_tag**
-> ::models::Tag repo_get_tag(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, tag)
+
+## repo_get_tag
+
+> crate::models::Tag repo_get_tag(owner, repo, tag)
 Get the tag of a repository by tag name
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **tag** | **String**| name of tag | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**tag** | **String** | name of tag | [required] |
 
 ### Return type
 
-[**::models::Tag**](Tag.md)
+[**crate::models::Tag**](Tag.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_wiki_page**
-> ::models::WikiPage repo_get_wiki_page(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, page_name)
+
+## repo_get_wiki_page
+
+> crate::models::WikiPage repo_get_wiki_page(owner, repo, page_name)
 Get a wiki page
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **page_name** | **String**| name of the page | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page_name** | **String** | name of the page | [required] |
 
 ### Return type
 
-[**::models::WikiPage**](WikiPage.md)
+[**crate::models::WikiPage**](WikiPage.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_wiki_page_revisions**
-> ::models::WikiCommitList repo_get_wiki_page_revisions(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, page_name, optional)
+
+## repo_get_wiki_page_revisions
+
+> crate::models::WikiCommitList repo_get_wiki_page_revisions(owner, repo, page_name, page)
 Get revisions of a wiki page
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **page_name** | **String**| name of the page | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page_name** | **String**| name of the page | 
- **page** | **i32**| page number of results to return (1-based) | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page_name** | **String** | name of the page | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
 
 ### Return type
 
-[**::models::WikiCommitList**](WikiCommitList.md)
+[**crate::models::WikiCommitList**](WikiCommitList.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_get_wiki_pages**
-> Vec<::models::WikiPageMetaData> repo_get_wiki_pages(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_get_wiki_pages
+
+> Vec<crate::models::WikiPageMetaData> repo_get_wiki_pages(owner, repo, page, limit)
 Get all wiki pages
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::WikiPageMetaData>**](WikiPageMetaData.md)
+[**Vec<crate::models::WikiPageMetaData>**](WikiPageMetaData.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_activity_feeds**
-> Vec<::models::Activity> repo_list_activity_feeds(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_activity_feeds
+
+> Vec<crate::models::Activity> repo_list_activity_feeds(owner, repo, date, page, limit)
 List a repository's activity feeds
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **date** | **String**| the date of the activities to be found | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**date** | Option<**String**> | the date of the activities to be found |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::Activity>**](Activity.md)
+[**Vec<crate::models::Activity>**](Activity.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_all_git_refs**
-> Vec<::models::Reference> repo_list_all_git_refs(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_list_all_git_refs
+
+> Vec<crate::models::Reference> repo_list_all_git_refs(owner, repo)
 Get specified ref or filtered repository's refs
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::Reference>**](Reference.md)
+[**Vec<crate::models::Reference>**](Reference.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_branch_protection**
-> Vec<::models::BranchProtection> repo_list_branch_protection(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_list_branch_protection
+
+> Vec<crate::models::BranchProtection> repo_list_branch_protection(owner, repo)
 List branch protections for a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::BranchProtection>**](BranchProtection.md)
+[**Vec<crate::models::BranchProtection>**](BranchProtection.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_branches**
-> Vec<::models::Branch> repo_list_branches(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_branches
+
+> Vec<crate::models::Branch> repo_list_branches(owner, repo, page, limit)
 List a repository's branches
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::Branch>**](Branch.md)
+[**Vec<crate::models::Branch>**](Branch.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_collaborators**
-> Vec<::models::User> repo_list_collaborators(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_collaborators
+
+> Vec<crate::models::User> repo_list_collaborators(owner, repo, page, limit)
 List a repository's collaborators
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::User>**](User.md)
+[**Vec<crate::models::User>**](User.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_git_hooks**
-> Vec<::models::GitHook> repo_list_git_hooks(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_list_git_hooks
+
+> Vec<crate::models::GitHook> repo_list_git_hooks(owner, repo)
 List the Git hooks in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::GitHook>**](GitHook.md)
+[**Vec<crate::models::GitHook>**](GitHook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_git_refs**
-> Vec<::models::Reference> repo_list_git_refs(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, _ref)
+
+## repo_list_git_refs
+
+> Vec<crate::models::Reference> repo_list_git_refs(owner, repo, r#ref)
 Get specified ref or filtered repository's refs
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **_ref** | **String**| part or full name of the ref | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**r#ref** | **String** | part or full name of the ref | [required] |
 
 ### Return type
 
-[**Vec<::models::Reference>**](Reference.md)
+[**Vec<crate::models::Reference>**](Reference.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_hooks**
-> Vec<::models::Hook> repo_list_hooks(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_hooks
+
+> Vec<crate::models::Hook> repo_list_hooks(owner, repo, page, limit)
 List the hooks in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::Hook>**](Hook.md)
+[**Vec<crate::models::Hook>**](Hook.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_keys**
-> Vec<::models::DeployKey> repo_list_keys(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_keys
+
+> Vec<crate::models::DeployKey> repo_list_keys(owner, repo, key_id, fingerprint, page, limit)
 List a repository's keys
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **key_id** | **i32**| the key_id to search for | 
- **fingerprint** | **String**| fingerprint of the key | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**key_id** | Option<**i32**> | the key_id to search for |  |
+**fingerprint** | Option<**String**> | fingerprint of the key |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::DeployKey>**](DeployKey.md)
+[**Vec<crate::models::DeployKey>**](DeployKey.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_pinned_issues**
-> Vec<::models::Issue> repo_list_pinned_issues(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_list_pinned_issues
+
+> Vec<crate::models::Issue> repo_list_pinned_issues(owner, repo)
 List a repo's pinned issues
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::Issue>**](Issue.md)
+[**Vec<crate::models::Issue>**](Issue.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_pinned_pull_requests**
-> Vec<::models::PullRequest> repo_list_pinned_pull_requests(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_list_pinned_pull_requests
+
+> Vec<crate::models::PullRequest> repo_list_pinned_pull_requests(owner, repo)
 List a repo's pinned pull requests
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::PullRequest>**](PullRequest.md)
+[**Vec<crate::models::PullRequest>**](PullRequest.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_pull_requests**
-> Vec<::models::PullRequest> repo_list_pull_requests(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_pull_requests
+
+> Vec<crate::models::PullRequest> repo_list_pull_requests(owner, repo, state, sort, milestone, labels, page, limit)
 List a repo's pull requests
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **state** | **String**| State of pull request: open or closed (optional) | 
- **sort** | **String**| Type of sort | 
- **milestone** | **i64**| ID of the milestone | 
- **labels** | [**Vec&lt;i64&gt;**](i64.md)| Label IDs | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**state** | Option<**String**> | State of pull request: open or closed (optional) |  |
+**sort** | Option<**String**> | Type of sort |  |
+**milestone** | Option<**i64**> | ID of the milestone |  |
+**labels** | Option<[**Vec<i64>**](i64.md)> | Label IDs |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::PullRequest>**](PullRequest.md)
+[**Vec<crate::models::PullRequest>**](PullRequest.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_pull_reviews**
-> Vec<::models::PullReview> repo_list_pull_reviews(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, optional)
+
+## repo_list_pull_reviews
+
+> Vec<crate::models::PullReview> repo_list_pull_reviews(owner, repo, index, page, limit)
 List all reviews for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::PullReview>**](PullReview.md)
+[**Vec<crate::models::PullReview>**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_push_mirrors**
-> Vec<::models::PushMirror> repo_list_push_mirrors(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_push_mirrors
+
+> Vec<crate::models::PushMirror> repo_list_push_mirrors(owner, repo, page, limit)
 Get all push mirrors of the repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::PushMirror>**](PushMirror.md)
+[**Vec<crate::models::PushMirror>**](PushMirror.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_release_attachments**
-> Vec<::models::Attachment> repo_list_release_attachments(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id)
+
+## repo_list_release_attachments
+
+> Vec<crate::models::Attachment> repo_list_release_attachments(owner, repo, id)
 List release's attachments
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the release | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the release | [required] |
 
 ### Return type
 
-[**Vec<::models::Attachment>**](Attachment.md)
+[**Vec<crate::models::Attachment>**](Attachment.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_releases**
-> Vec<::models::Release> repo_list_releases(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_releases
+
+> Vec<crate::models::Release> repo_list_releases(owner, repo, draft, pre_release, per_page, page, limit)
 List a repo's releases
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **draft** | **bool**| filter (exclude / include) drafts, if you dont have repo write access none will show | 
- **pre_release** | **bool**| filter (exclude / include) pre-releases | 
- **per_page** | **i32**| page size of results, deprecated - use limit | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**draft** | Option<**bool**> | filter (exclude / include) drafts, if you dont have repo write access none will show |  |
+**pre_release** | Option<**bool**> | filter (exclude / include) pre-releases |  |
+**per_page** | Option<**i32**> | page size of results, deprecated - use limit |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::Release>**](Release.md)
+[**Vec<crate::models::Release>**](Release.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_stargazers**
-> Vec<::models::User> repo_list_stargazers(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_stargazers
+
+> Vec<crate::models::User> repo_list_stargazers(owner, repo, page, limit)
 List a repo's stargazers
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::User>**](User.md)
+[**Vec<crate::models::User>**](User.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_statuses**
-> Vec<::models::CommitStatus> repo_list_statuses(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, sha, optional)
+
+## repo_list_statuses
+
+> Vec<crate::models::CommitStatus> repo_list_statuses(owner, repo, sha, sort, state, page, limit)
 Get a commit's statuses
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **sha** | **String**| sha of the commit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **sha** | **String**| sha of the commit | 
- **sort** | **String**| type of sort | 
- **state** | **String**| type of state | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**sha** | **String** | sha of the commit | [required] |
+**sort** | Option<**String**> | type of sort |  |
+**state** | Option<**String**> | type of state |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::CommitStatus>**](CommitStatus.md)
+[**Vec<crate::models::CommitStatus>**](CommitStatus.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_statuses_by_ref**
-> Vec<::models::CommitStatus> repo_list_statuses_by_ref(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, _ref, optional)
+
+## repo_list_statuses_by_ref
+
+> Vec<crate::models::CommitStatus> repo_list_statuses_by_ref(owner, repo, r#ref, sort, state, page, limit)
 Get a commit's statuses, by branch/tag/commit reference
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **_ref** | **String**| name of branch/tag/commit | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **_ref** | **String**| name of branch/tag/commit | 
- **sort** | **String**| type of sort | 
- **state** | **String**| type of state | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**r#ref** | **String** | name of branch/tag/commit | [required] |
+**sort** | Option<**String**> | type of sort |  |
+**state** | Option<**String**> | type of state |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::CommitStatus>**](CommitStatus.md)
+[**Vec<crate::models::CommitStatus>**](CommitStatus.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_subscribers**
-> Vec<::models::User> repo_list_subscribers(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_subscribers
+
+> Vec<crate::models::User> repo_list_subscribers(owner, repo, page, limit)
 List a repo's watchers
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::User>**](User.md)
+[**Vec<crate::models::User>**](User.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_tags**
-> Vec<::models::Tag> repo_list_tags(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_tags
+
+> Vec<crate::models::Tag> repo_list_tags(owner, repo, page, limit)
 List a repository's tags
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results, default maximum page size is 50 | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results, default maximum page size is 50 |  |
 
 ### Return type
 
-[**Vec<::models::Tag>**](Tag.md)
+[**Vec<crate::models::Tag>**](Tag.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_teams**
-> Vec<::models::Team> repo_list_teams(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_list_teams
+
+> Vec<crate::models::Team> repo_list_teams(owner, repo)
 List a repository's teams
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**Vec<::models::Team>**](Team.md)
+[**Vec<crate::models::Team>**](Team.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_list_topics**
-> ::models::TopicName repo_list_topics(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_list_topics
+
+> crate::models::TopicName repo_list_topics(owner, repo, page, limit)
 Get list of topics that a repository has
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**::models::TopicName**](TopicName.md)
+[**crate::models::TopicName**](TopicName.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_merge_pull_request**
-> repo_merge_pull_request(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, optional)
+
+## repo_merge_pull_request
+
+> repo_merge_pull_request(owner, repo, index, body)
 Merge a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to merge | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request to merge | 
- **body** | [**MergePullRequestOption**](MergePullRequestOption.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to merge | [required] |
+**body** | Option<[**MergePullRequestOption**](MergePullRequestOption.md)> |  |  |
 
 ### Return type
 
@@ -4833,71 +3837,56 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_migrate**
-> ::models::Repository repo_migrate(ctx, ctx, ctx, ctx, ctx, ctx, ctx, optional)
+
+## repo_migrate
+
+> crate::models::Repository repo_migrate(body)
 Migrate a remote git repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**MigrateRepoOptions**](MigrateRepoOptions.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**body** | Option<[**MigrateRepoOptions**](MigrateRepoOptions.md)> |  |  |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_mirror_sync**
-> repo_mirror_sync(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_mirror_sync
+
+> repo_mirror_sync(owner, repo)
 Sync a mirrored repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to sync | 
-  **repo** | **String**| name of the repo to sync | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to sync | [required] |
+**repo** | **String** | name of the repo to sync | [required] |
 
 ### Return type
 
@@ -4905,66 +3894,58 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_new_pin_allowed**
-> ::models::NewIssuePinsAllowed repo_new_pin_allowed(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_new_pin_allowed
+
+> crate::models::NewIssuePinsAllowed repo_new_pin_allowed(owner, repo)
 Returns if new Issue Pins are allowed
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::NewIssuePinsAllowed**](NewIssuePinsAllowed.md)
+[**crate::models::NewIssuePinsAllowed**](NewIssuePinsAllowed.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_pull_request_is_merged**
-> repo_pull_request_is_merged(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index)
+
+## repo_pull_request_is_merged
+
+> repo_pull_request_is_merged(owner, repo, index)
 Check if a pull request has been merged
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
 
 ### Return type
 
@@ -4972,32 +3953,28 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_push_mirror_sync**
-> repo_push_mirror_sync(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_push_mirror_sync
+
+> repo_push_mirror_sync(owner, repo)
 Sync all push mirrored repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to sync | 
-  **repo** | **String**| name of the repo to sync | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to sync | [required] |
+**repo** | **String** | name of the repo to sync | [required] |
 
 ### Return type
 
@@ -5005,87 +3982,72 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_search**
-> ::models::SearchResults repo_search(ctx, ctx, ctx, ctx, ctx, ctx, ctx, optional)
+
+## repo_search
+
+> crate::models::SearchResults repo_search(q, topic, include_desc, uid, priority_owner_id, team_id, starred_by, private, is_private, template, archived, mode, exclusive, sort, order, page, limit)
 Search for repositories
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **String**| keyword | 
- **topic** | **bool**| Limit search to repositories with keyword as topic | 
- **include_desc** | **bool**| include search of keyword within repository description | 
- **uid** | **i64**| search only for repos that the user with the given id owns or contributes to | 
- **priority_owner_id** | **i64**| repo owner to prioritize in the results | 
- **team_id** | **i64**| search only for repos that belong to the given team id | 
- **starred_by** | **i64**| search only for repos that the user with the given id has starred | 
- **private** | **bool**| include private repositories this user has access to (defaults to true) | 
- **is_private** | **bool**| show only pubic, private or all repositories (defaults to all) | 
- **template** | **bool**| include template repositories this user has access to (defaults to true) | 
- **archived** | **bool**| show only archived, non-archived or all repositories (defaults to all) | 
- **mode** | **String**| type of repository to search for. Supported values are \&quot;fork\&quot;, \&quot;source\&quot;, \&quot;mirror\&quot; and \&quot;collaborative\&quot; | 
- **exclusive** | **bool**| if &#x60;uid&#x60; is given, search only for repos that the user owns | 
- **sort** | **String**| sort repos by attribute. Supported values are \&quot;alpha\&quot;, \&quot;created\&quot;, \&quot;updated\&quot;, \&quot;size\&quot;, and \&quot;id\&quot;. Default is \&quot;alpha\&quot; | 
- **order** | **String**| sort order, either \&quot;asc\&quot; (ascending) or \&quot;desc\&quot; (descending). Default is \&quot;asc\&quot;, ignored if \&quot;sort\&quot; is not specified. | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**q** | Option<**String**> | keyword |  |
+**topic** | Option<**bool**> | Limit search to repositories with keyword as topic |  |
+**include_desc** | Option<**bool**> | include search of keyword within repository description |  |
+**uid** | Option<**i64**> | search only for repos that the user with the given id owns or contributes to |  |
+**priority_owner_id** | Option<**i64**> | repo owner to prioritize in the results |  |
+**team_id** | Option<**i64**> | search only for repos that belong to the given team id |  |
+**starred_by** | Option<**i64**> | search only for repos that the user with the given id has starred |  |
+**private** | Option<**bool**> | include private repositories this user has access to (defaults to true) |  |
+**is_private** | Option<**bool**> | show only pubic, private or all repositories (defaults to all) |  |
+**template** | Option<**bool**> | include template repositories this user has access to (defaults to true) |  |
+**archived** | Option<**bool**> | show only archived, non-archived or all repositories (defaults to all) |  |
+**mode** | Option<**String**> | type of repository to search for. Supported values are \"fork\", \"source\", \"mirror\" and \"collaborative\" |  |
+**exclusive** | Option<**bool**> | if `uid` is given, search only for repos that the user owns |  |
+**sort** | Option<**String**> | sort repos by attribute. Supported values are \"alpha\", \"created\", \"updated\", \"size\", and \"id\". Default is \"alpha\" |  |
+**order** | Option<**String**> | sort order, either \"asc\" (ascending) or \"desc\" (descending). Default is \"asc\", ignored if \"sort\" is not specified. |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**::models::SearchResults**](SearchResults.md)
+[**crate::models::SearchResults**](SearchResults.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_signing_key**
-> String repo_signing_key(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_signing_key
+
+> String repo_signing_key(owner, repo)
 Get signing-key.gpg for given repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
@@ -5093,80 +4055,62 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: text/plain
+- **Content-Type**: Not defined
+- **Accept**: text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_submit_pull_review**
-> ::models::PullReview repo_submit_pull_review(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, id, body)
+
+## repo_submit_pull_review
+
+> crate::models::PullReview repo_submit_pull_review(owner, repo, index, id, body)
 Submit a pending review to an pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **id** | **i64**| id of the review | 
-  **body** | [**SubmitPullReviewOptions**](SubmitPullReviewOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**id** | **i64** | id of the review | [required] |
+**body** | [**SubmitPullReviewOptions**](SubmitPullReviewOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::PullReview**](PullReview.md)
+[**crate::models::PullReview**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_test_hook**
-> repo_test_hook(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, id, optional)
+
+## repo_test_hook
+
+> repo_test_hook(owner, repo, id, r#ref)
 Test a push webhook
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **id** | **i64**| id of the hook to test | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **id** | **i64**| id of the hook to test | 
- **_ref** | **String**| The name of the commit/branch/tag, indicates which commit will be loaded to the webhook payload. | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**id** | **i64** | id of the hook to test | [required] |
+**r#ref** | Option<**String**> | The name of the commit/branch/tag, indicates which commit will be loaded to the webhook payload. |  |
 
 ### Return type
 
@@ -5174,195 +4118,156 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_tracked_times**
-> Vec<::models::TrackedTime> repo_tracked_times(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_tracked_times
+
+> Vec<crate::models::TrackedTime> repo_tracked_times(owner, repo, user, since, before, page, limit)
 List a repo's tracked times
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **user** | **String**| optional filter by user (available for issue managers) | 
- **since** | **String**| Only show times updated after the given time. This is a timestamp in RFC 3339 format | 
- **before** | **String**| Only show times updated before the given time. This is a timestamp in RFC 3339 format | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**user** | Option<**String**> | optional filter by user (available for issue managers) |  |
+**since** | Option<**String**> | Only show times updated after the given time. This is a timestamp in RFC 3339 format |  |
+**before** | Option<**String**> | Only show times updated before the given time. This is a timestamp in RFC 3339 format |  |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::TrackedTime>**](TrackedTime.md)
+[**Vec<crate::models::TrackedTime>**](TrackedTime.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_transfer**
-> ::models::Repository repo_transfer(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, body)
+
+## repo_transfer
+
+> crate::models::Repository repo_transfer(owner, repo, body)
 Transfer a repo ownership
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo to transfer | 
-  **repo** | **String**| name of the repo to transfer | 
-  **body** | [**TransferRepoOption**](TransferRepoOption.md)| Transfer Options | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo to transfer | [required] |
+**repo** | **String** | name of the repo to transfer | [required] |
+**body** | [**TransferRepoOption**](TransferRepoOption.md) | Transfer Options | [required] |
 
 ### Return type
 
-[**::models::Repository**](Repository.md)
+[**crate::models::Repository**](Repository.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_un_dismiss_pull_review**
-> ::models::PullReview repo_un_dismiss_pull_review(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, id)
+
+## repo_un_dismiss_pull_review
+
+> crate::models::PullReview repo_un_dismiss_pull_review(owner, repo, index, id)
 Cancel to dismiss a review for a pull request
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request | 
-  **id** | **i64**| id of the review | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request | [required] |
+**id** | **i64** | id of the review | [required] |
 
 ### Return type
 
-[**::models::PullReview**](PullReview.md)
+[**crate::models::PullReview**](PullReview.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_update_file**
-> ::models::FileResponse repo_update_file(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, filepath, body)
+
+## repo_update_file
+
+> crate::models::FileResponse repo_update_file(owner, repo, filepath, body)
 Update a file in a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **filepath** | **String**| path of the file to update | 
-  **body** | [**UpdateFileOptions**](UpdateFileOptions.md)|  | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**filepath** | **String** | path of the file to update | [required] |
+**body** | [**UpdateFileOptions**](UpdateFileOptions.md) |  | [required] |
 
 ### Return type
 
-[**::models::FileResponse**](FileResponse.md)
+[**crate::models::FileResponse**](FileResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_update_pull_request**
-> repo_update_pull_request(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, index, optional)
+
+## repo_update_pull_request
+
+> repo_update_pull_request(owner, repo, index, style)
 Merge PR's baseBranch into headBranch
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **index** | **i64**| index of the pull request to get | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **index** | **i64**| index of the pull request to get | 
- **style** | **String**| how to update pull request | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**index** | **i64** | index of the pull request to get | [required] |
+**style** | Option<**String**> | how to update pull request |  |
 
 ### Return type
 
@@ -5370,42 +4275,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_update_topics**
-> repo_update_topics(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, optional)
+
+## repo_update_topics
+
+> repo_update_topics(owner, repo, body)
 Replace list of topics for a repository
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **owner** | **String**| owner of the repo | 
- **repo** | **String**| name of the repo | 
- **body** | [**RepoTopicOptions**](RepoTopicOptions.md)|  | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**body** | Option<[**RepoTopicOptions**](RepoTopicOptions.md)> |  |  |
 
 ### Return type
 
@@ -5413,140 +4305,116 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: application/json, text/plain
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **repo_validate_issue_config**
-> ::models::IssueConfigValidation repo_validate_issue_config(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## repo_validate_issue_config
+
+> crate::models::IssueConfigValidation repo_validate_issue_config(owner, repo)
 Returns the validation information for a issue config
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::IssueConfigValidation**](IssueConfigValidation.md)
+[**crate::models::IssueConfigValidation**](IssueConfigValidation.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **topic_search**
-> Vec<::models::TopicResponse> topic_search(ctx, ctx, ctx, ctx, ctx, ctx, ctx, q, optional)
+
+## topic_search
+
+> Vec<crate::models::TopicResponse> topic_search(q, page, limit)
 search topics via keyword
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **q** | **String**| keywords to search | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **String**| keywords to search | 
- **page** | **i32**| page number of results to return (1-based) | 
- **limit** | **i32**| page size of results | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**q** | **String** | keywords to search | [required] |
+**page** | Option<**i32**> | page number of results to return (1-based) |  |
+**limit** | Option<**i32**> | page size of results |  |
 
 ### Return type
 
-[**Vec<::models::TopicResponse>**](TopicResponse.md)
+[**Vec<crate::models::TopicResponse>**](TopicResponse.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_current_check_subscription**
-> ::models::WatchInfo user_current_check_subscription(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## user_current_check_subscription
+
+> crate::models::WatchInfo user_current_check_subscription(owner, repo)
 Check if the current user is watching a repo
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::WatchInfo**](WatchInfo.md)
+[**crate::models::WatchInfo**](WatchInfo.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/html
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_current_delete_subscription**
-> user_current_delete_subscription(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## user_current_delete_subscription
+
+> user_current_delete_subscription(owner, repo)
 Unwatch a repo
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
@@ -5554,79 +4422,71 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_current_put_subscription**
-> ::models::WatchInfo user_current_put_subscription(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo)
+
+## user_current_put_subscription
+
+> crate::models::WatchInfo user_current_put_subscription(owner, repo)
 Watch a repo
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
 
 ### Return type
 
-[**::models::WatchInfo**](WatchInfo.md)
+[**crate::models::WatchInfo**](WatchInfo.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json, text/html
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/html
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **user_tracked_times**
-> Vec<::models::TrackedTime> user_tracked_times(ctx, ctx, ctx, ctx, ctx, ctx, ctx, owner, repo, user)
+
+## user_tracked_times
+
+> Vec<crate::models::TrackedTime> user_tracked_times(owner, repo, user)
 List a user's tracked times in a repo
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **owner** | **String**| owner of the repo | 
-  **repo** | **String**| name of the repo | 
-  **user** | **String**| username of user | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**owner** | **String** | owner of the repo | [required] |
+**repo** | **String** | name of the repo | [required] |
+**user** | **String** | username of user | [required] |
 
 ### Return type
 
-[**Vec<::models::TrackedTime>**](TrackedTime.md)
+[**Vec<crate::models::TrackedTime>**](TrackedTime.md)
 
 ### Authorization
 
-[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+[TOTPHeader](../README.md#TOTPHeader), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [SudoHeader](../README.md#SudoHeader), [BasicAuth](../README.md#BasicAuth), [AccessToken](../README.md#AccessToken), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/plain
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

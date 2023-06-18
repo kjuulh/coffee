@@ -1,15 +1,16 @@
 # NodeInfo
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [***Value**](Value.md) |  | [optional] [default to null]
-**open_registrations** | **bool** |  | [optional] [default to null]
-**protocols** | **Vec<String>** |  | [optional] [default to null]
-**services** | [***::models::NodeInfoServices**](NodeInfoServices.md) |  | [optional] [default to null]
-**software** | [***::models::NodeInfoSoftware**](NodeInfoSoftware.md) |  | [optional] [default to null]
-**usage** | [***::models::NodeInfoUsage**](NodeInfoUsage.md) |  | [optional] [default to null]
-**version** | **String** |  | [optional] [default to null]
+**metadata** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**open_registrations** | Option<**bool**> |  | [optional]
+**protocols** | Option<**Vec<String>**> |  | [optional]
+**services** | Option<[**crate::models::NodeInfoServices**](NodeInfoServices.md)> |  | [optional]
+**software** | Option<[**crate::models::NodeInfoSoftware**](NodeInfoSoftware.md)> |  | [optional]
+**usage** | Option<[**crate::models::NodeInfoUsage**](NodeInfoUsage.md)> |  | [optional]
+**version** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

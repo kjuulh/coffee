@@ -1,14 +1,15 @@
 # GeneralRepoSettings
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**http_git_disabled** | **bool** |  | [optional] [default to null]
-**lfs_disabled** | **bool** |  | [optional] [default to null]
-**migrations_disabled** | **bool** |  | [optional] [default to null]
-**mirrors_disabled** | **bool** |  | [optional] [default to null]
-**stars_disabled** | **bool** |  | [optional] [default to null]
-**time_tracking_disabled** | **bool** |  | [optional] [default to null]
+**http_git_disabled** | Option<**bool**> |  | [optional]
+**lfs_disabled** | Option<**bool**> |  | [optional]
+**migrations_disabled** | Option<**bool**> |  | [optional]
+**mirrors_disabled** | Option<**bool**> |  | [optional]
+**stars_disabled** | Option<**bool**> |  | [optional]
+**time_tracking_disabled** | Option<**bool**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

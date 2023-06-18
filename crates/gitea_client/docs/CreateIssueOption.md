@@ -1,17 +1,18 @@
 # CreateIssueOption
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assignee** | **String** | deprecated | [optional] [default to null]
-**assignees** | **Vec<String>** |  | [optional] [default to null]
-**body** | **String** |  | [optional] [default to null]
-**closed** | **bool** |  | [optional] [default to null]
-**due_date** | **String** |  | [optional] [default to null]
-**labels** | **Vec<i64>** | list of label ids | [optional] [default to null]
-**milestone** | **i64** | milestone id | [optional] [default to null]
-**_ref** | **String** |  | [optional] [default to null]
-**title** | **String** |  | [default to null]
+**assignee** | Option<**String**> | deprecated | [optional]
+**assignees** | Option<**Vec<String>**> |  | [optional]
+**body** | Option<**String**> |  | [optional]
+**closed** | Option<**bool**> |  | [optional]
+**due_date** | Option<**String**> |  | [optional]
+**labels** | Option<**Vec<i64>**> | list of label ids | [optional]
+**milestone** | Option<**i64**> | milestone id | [optional]
+**r#ref** | Option<**String**> |  | [optional]
+**title** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

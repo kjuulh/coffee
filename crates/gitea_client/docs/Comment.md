@@ -1,19 +1,20 @@
 # Comment
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**Vec<::models::Attachment>**](Attachment.md) |  | [optional] [default to null]
-**body** | **String** |  | [optional] [default to null]
-**created_at** | **String** |  | [optional] [default to null]
-**html_url** | **String** |  | [optional] [default to null]
-**id** | **i64** |  | [optional] [default to null]
-**issue_url** | **String** |  | [optional] [default to null]
-**original_author** | **String** |  | [optional] [default to null]
-**original_author_id** | **i64** |  | [optional] [default to null]
-**pull_request_url** | **String** |  | [optional] [default to null]
-**updated_at** | **String** |  | [optional] [default to null]
-**user** | [***::models::User**](User.md) |  | [optional] [default to null]
+**assets** | Option<[**Vec<crate::models::Attachment>**](Attachment.md)> |  | [optional]
+**body** | Option<**String**> |  | [optional]
+**created_at** | Option<**String**> |  | [optional]
+**html_url** | Option<**String**> |  | [optional]
+**id** | Option<**i64**> |  | [optional]
+**issue_url** | Option<**String**> |  | [optional]
+**original_author** | Option<**String**> |  | [optional]
+**original_author_id** | Option<**i64**> |  | [optional]
+**pull_request_url** | Option<**String**> |  | [optional]
+**updated_at** | Option<**String**> |  | [optional]
+**user** | Option<[**crate::models::User**](User.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

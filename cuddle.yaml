@@ -9,3 +9,5 @@ vars:
 scripts:
   generate_client:
     type: shell
+  install:
+    type: shell

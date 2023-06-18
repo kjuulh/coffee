@@ -1,15 +1,16 @@
 # PackageFile
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**size** | **i64** |  | [optional] [default to null]
-**id** | **i64** |  | [optional] [default to null]
-**md5** | **String** |  | [optional] [default to null]
-**name** | **String** |  | [optional] [default to null]
-**sha1** | **String** |  | [optional] [default to null]
-**sha256** | **String** |  | [optional] [default to null]
-**sha512** | **String** |  | [optional] [default to null]
+**size** | Option<**i64**> |  | [optional]
+**id** | Option<**i64**> |  | [optional]
+**md5** | Option<**String**> |  | [optional]
+**name** | Option<**String**> |  | [optional]
+**sha1** | Option<**String**> |  | [optional]
+**sha256** | Option<**String**> |  | [optional]
+**sha512** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
