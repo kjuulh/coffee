@@ -60,6 +60,23 @@ impl GiteaClient {
         Self { config }
     }
 
+    fn get_branch(&self) -> anyhow::Result<Option<String>> {
+        match std::process::Command::new("git")
+            .args(&["branch", "--show-current"])
+            .output()
+        {
+            Ok(output) => {
+                let output = std::str::from_utf8(&output.stdout)?;
+                return Ok(Some(output.to_owned()));
+            }
+            Err(e) => {
+                tracing::debug!("failed to query git, returning none: {}", e.to_string());
+
+                return Ok(None);
+            }
+        }
+    }
+
     fn get_git(&self) -> anyhow::Result<Option<(String, String)>> {
         match std::process::Command::new("git")
             .args(&["remote", "-v", "show"])
@@ -93,16 +110,25 @@ impl GiteaClient {
         Ok(None)
     }
 
+    pub async fn list_open_pull_requests(
+        &self,
+        owner: &str,
+        repo: &str,
+    ) -> anyhow::Result<Vec<gitea_client::models::PullRequest>> {
+        self.list_pull_requests(owner, repo, Some("open")).await
+    }
+
     pub async fn list_pull_requests(
         &self,
         owner: &str,
         repo: &str,
+        state: Option<&str>,
     ) -> anyhow::Result<Vec<gitea_client::models::PullRequest>> {
         let pr = gitea_client::apis::repository_api::repo_list_pull_requests(
             &self.config,
             owner,
             repo,
-            Some("open"),
+            state,
             Some("recentupdate"),
             None,
             None,
@@ -161,7 +187,11 @@ impl PullRequest {
             )
             .arg(clap::Arg::new("org").long("org").env("GITEA_ORG"))
             .subcommand_required(true)
-            .subcommands(&[Self::pull_request_create(), Self::pull_request_list()])
+            .subcommands(&[
+                Self::pull_request_create(),
+                Self::pull_request_list(),
+                Self::pull_request_view(),
+            ])
             .subcommand_help_heading("pull-request")
     }
 
@@ -171,6 +201,19 @@ impl PullRequest {
 
     fn pull_request_list() -> Command {
         clap::Command::new("list").alias("ls")
+    }
+
+    fn pull_request_view() -> Command {
+        clap::Command::new("view")
+            .alias("v")
+            .arg(clap::Arg::new("branch").short('b').long("branch"))
+            .arg(
+                clap::Arg::new("web")
+                    .short('w')
+                    .long("web")
+                    .num_args(0)
+                    .required(false),
+            )
     }
 
     async fn handle_pr(&self, args: &ArgMatches) -> anyhow::Result<()> {
@@ -186,13 +229,50 @@ impl PullRequest {
         match args.subcommand() {
             Some(("create", _args)) => todo!(),
             Some(("list", _args)) => {
-                let pull_requests = self.client.list_pull_requests(&owner, &repo).await?;
+                let pull_requests = self.client.list_open_pull_requests(&owner, &repo).await?;
                 for pull_request in pull_requests {
                     println!(
                         "{}: {}",
                         pull_request.title.unwrap_or_default(),
                         pull_request.html_url.unwrap_or_default()
                     );
+                }
+            }
+            Some(("view", args)) => {
+                let git_branch = self.client.get_branch()?;
+                let git_branch = git_branch.as_ref();
+
+                let branch = args.get_one::<String>("branch");
+                let branch = Self::default_or(branch, git_branch)?;
+                let web = args.get_one::<bool>("web");
+
+                let pull_requests = self.client.list_pull_requests(&owner, &repo, None).await?;
+                for pull_request in pull_requests {
+                    if let Some(head) = pull_request.head {
+                        if let Some(r#ref) = head.r#ref {
+                            if r#ref == branch.trim() {
+                                match web {
+                                    Some(true) => {
+                                        webbrowser::open(&pull_request.html_url.unwrap())?
+                                    }
+                                    Some(false) => {
+                                        println!(
+                                            "{}: {}",
+                                            pull_request.title.unwrap_or_default(),
+                                            pull_request.html_url.unwrap_or_default()
+                                        );
+                                    }
+                                    None => {
+                                        println!(
+                                            "{}: {}",
+                                            pull_request.title.unwrap_or_default(),
+                                            pull_request.html_url.unwrap_or_default()
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             Some(_) => todo!(),
