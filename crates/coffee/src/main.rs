@@ -1,16 +1,15 @@
 use std::sync::Arc;
 
+use anyhow::Context;
 use clap::{ArgMatches, Command};
 use git_url_parse::GitUrl;
-use gitea_client::apis::configuration::Configuration;
+use gitea_client::apis::configuration::{ApiKey, Configuration};
 use tracing::Level;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     dotenv::dotenv().ok();
-    tracing_subscriber::fmt()
-        .with_max_level(Level::DEBUG)
-        .init();
+    tracing_subscriber::fmt().with_max_level(Level::INFO).init();
 
     let cli = Command::new("coffee")
         .arg(
@@ -39,12 +38,35 @@ async fn main() -> anyhow::Result<()> {
 
     match cli.subcommand() {
         Some(("pull-request", args)) => pull_request.handle_pr(args).await?,
-        Some(("repo", args)) => repo.handle_repo(args)?,
+        Some(("repo", args)) => repo.handle_repo(args).await?,
         Some(_) => {}
         None => {}
     }
 
     Ok(())
+}
+
+#[derive(Debug, PartialEq)]
+enum Visibility {
+    Public,
+    Private,
+}
+
+impl From<&str> for Visibility {
+    fn from(s: &str) -> Self {
+        match s {
+            "public" => Self::Public,
+            "private" => Self::Private,
+            _ => panic!("option is not possible: {}", s),
+        }
+    }
+}
+
+impl From<String> for Visibility {
+    #[inline(always)]
+    fn from(s: String) -> Self {
+        s.as_str().into()
+    }
 }
 
 struct GiteaClient {
@@ -54,7 +76,7 @@ struct GiteaClient {
 impl GiteaClient {
     pub fn new(url: String, token: String) -> Self {
         let mut config = Configuration::new();
-        config.bearer_access_token = Some(token);
+
         config.base_path = url;
 
         Self { config }
@@ -91,12 +113,10 @@ impl GiteaClient {
                     let _ = split.next();
 
                     if let Some(remote_url) = split.next() {
-                        if remote_url.contains(domain.host_str().unwrap()) {
-                            let git_url = GitUrl::parse(remote_url)
-                                .map_err(|e| anyhow::anyhow!("{}", e.to_string()))?;
+                        let git_url = GitUrl::parse(remote_url)
+                            .map_err(|e| anyhow::anyhow!("{}", e.to_string()))?;
 
-                            return Ok(Some((git_url.owner.unwrap(), git_url.name)));
-                        }
+                        return Ok(Some((git_url.owner.unwrap(), git_url.name)));
                     }
                 }
             }
@@ -108,6 +128,31 @@ impl GiteaClient {
         }
 
         Ok(None)
+    }
+
+    pub async fn create_repo(
+        &self,
+        name: &str,
+        visibility: Visibility,
+    ) -> anyhow::Result<gitea_client::models::Repository> {
+        gitea_client::apis::user_api::create_current_user_repo(
+            &self.config,
+            Some(gitea_client::models::CreateRepoOption {
+                auto_init: None,
+                default_branch: Some("main".into()),
+                description: None,
+                gitignores: None,
+                issue_labels: None,
+                license: None,
+                name: name.to_string(),
+                private: Some(visibility == Visibility::Private),
+                readme: None,
+                template: None,
+                trust_model: None,
+            }),
+        )
+        .await
+        .context("failed to create repository")
     }
 
     pub async fn list_open_pull_requests(
@@ -141,11 +186,15 @@ impl GiteaClient {
     }
 }
 
-struct Repo {}
+struct Repo {
+    client: Arc<GiteaClient>,
+}
 
 impl Repo {
-    pub fn new(_gitea_client: Arc<GiteaClient>) -> Self {
-        Self {}
+    pub fn new(gitea_client: Arc<GiteaClient>) -> Self {
+        Self {
+            client: gitea_client,
+        }
     }
 
     fn repo() -> Command {
@@ -157,10 +206,62 @@ impl Repo {
 
     fn repo_create() -> Command {
         clap::Command::new("create")
+            .arg(clap::Arg::new("visibility").long("visibility"))
+            .arg(clap::Arg::new("name").long("name"))
     }
 
-    fn handle_repo(&self, _args: &ArgMatches) -> anyhow::Result<()> {
+    async fn handle_repo(&self, args: &ArgMatches) -> anyhow::Result<()> {
         tracing::debug!("command: repo");
+
+        match args.subcommand() {
+            Some(("create", args)) => {
+                let name = args
+                    .get_one::<String>("name")
+                    .map(|n| Ok(n.clone()))
+                    .unwrap_or_else(|| {
+                        inquire::Text::new("name")
+                            .with_help_message("the name of the repository you want to create")
+                            .prompt()
+                    })?;
+                let visibility = args
+                    .get_one::<String>("visibility")
+                    .map(|n| Ok(n.clone()))
+                    .unwrap_or_else(|| {
+                        inquire::Select::new("name", vec!["private", "public"])
+                            .with_vim_mode(true)
+                            .with_help_message("the visibility of the repository")
+                            .prompt()
+                            .map(|x| x.to_string())
+                    })?
+                    .into();
+
+                let repo = self.client.create_repo(&name, visibility).await?;
+                println!("created repo: {}", &repo.full_name.unwrap());
+
+                if inquire::Confirm::new("set remote")
+                    .with_default(true)
+                    .prompt()?
+                {
+                    let remote_name = inquire::Text::new("remote name")
+                        .with_default("origin")
+                        .prompt()?;
+
+                    if let Some(ssh) = &repo.ssh_url {
+                        std::process::Command::new("git")
+                            .args(&["remote", "add", &remote_name, &ssh])
+                            .spawn()?
+                            .wait()?;
+                    } else if let Some(http) = &repo.clone_url {
+                        std::process::Command::new("git")
+                            .args(&["remote", "add", &remote_name, &http])
+                            .spawn()?
+                            .wait()?;
+                    }
+                }
+            }
+            _ => todo!(),
+        }
+
         Ok(())
     }
 }
@@ -289,15 +390,11 @@ impl PullRequest {
             None => match fallback {
                 Some(fallback) => fallback,
                 None => {
-                    anyhow::bail!("missing field");
+                    anyhow::bail!("failed to find fallback git remote");
                 }
             },
             Some(arg) => arg,
         };
-
-        //
-        //
-        //
 
         Ok(arg.clone())
     }

@@ -13,6 +13,9 @@ tracing-subscriber.workspace = true
 clap.workspace = true
 dotenv.workspace = true
 axum.workspace = true
+inquire.workspace = true
 url = "2.4.0"
 git-url-parse = "0.4.4"
 webbrowser = "0.8.10"
+reqwest = { version = "0.11.18" }
+serde_json = { version = "1" }
