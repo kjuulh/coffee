@@ -155,6 +155,16 @@ impl GiteaClient {
         .context("failed to create repository")
     }
 
+    pub async fn get_repo(
+        &self,
+        owner: &str,
+        name: &str,
+    ) -> anyhow::Result<gitea_client::models::Repository> {
+        gitea_client::apis::repository_api::repo_get(&self.config, owner, name)
+            .await
+            .context("failed to get repository")
+    }
+
     pub async fn list_open_pull_requests(
         &self,
         owner: &str,
@@ -199,7 +209,7 @@ impl Repo {
 
     fn repo() -> Command {
         clap::Command::new("repo")
-            .subcommands(&[Self::repo_create()])
+            .subcommands(&[Self::repo_create(), Self::repo_view()])
             .subcommand_required(true)
             .subcommand_help_heading("repo")
     }
@@ -208,6 +218,17 @@ impl Repo {
         clap::Command::new("create")
             .arg(clap::Arg::new("visibility").long("visibility"))
             .arg(clap::Arg::new("name").long("name"))
+    }
+
+    fn repo_view() -> Command {
+        clap::Command::new("view")
+            .arg(
+                clap::Arg::new("web")
+                    .long("web")
+                    .short('w')
+                    .action(clap::ArgAction::SetTrue),
+            )
+            .arg(clap::Arg::new("repository").alias("repo"))
     }
 
     async fn handle_repo(&self, args: &ArgMatches) -> anyhow::Result<()> {
@@ -257,6 +278,26 @@ impl Repo {
                             .spawn()?
                             .wait()?;
                     }
+                }
+            }
+            Some(("view", args)) => {
+                let git_repo = self.client.get_git()?;
+                let (repo_owner, repo_name) = git_repo
+                    .map(|(owner, name)| (Some(owner), Some(name)))
+                    .unwrap_or((None, None));
+
+                let repository = args.get_one::<String>("repository");
+                let repository = default_or(repo_name.as_ref(), repository)?;
+                let web = args.get_one::<bool>("web");
+
+                let repo = self
+                    .client
+                    .get_repo(&repo_owner.unwrap(), &repository)
+                    .await?;
+
+                match repo.html_url {
+                    Some(link) => webbrowser::open(&link)?,
+                    None => anyhow::bail!("failed to find a valid link to repository"),
                 }
             }
             _ => todo!(),
@@ -323,9 +364,9 @@ impl PullRequest {
         let git = git.as_ref();
 
         let owner = args.get_one::<String>("org");
-        let owner = Self::default_or(owner, git.map(|(owner, _)| owner))?;
+        let owner = default_or(owner, git.map(|(owner, _)| owner))?;
         let repo = args.get_one::<String>("repository");
-        let repo = Self::default_or(repo, git.map(|(_, repo)| repo))?;
+        let repo = default_or(repo, git.map(|(_, repo)| repo))?;
 
         match args.subcommand() {
             Some(("create", _args)) => todo!(),
@@ -344,7 +385,7 @@ impl PullRequest {
                 let git_branch = git_branch.as_ref();
 
                 let branch = args.get_one::<String>("branch");
-                let branch = Self::default_or(branch, git_branch)?;
+                let branch = default_or(branch, git_branch)?;
                 let web = args.get_one::<bool>("web");
 
                 let pull_requests = self.client.list_pull_requests(&owner, &repo, None).await?;
@@ -384,18 +425,17 @@ impl PullRequest {
         }
         Ok(())
     }
+}
 
-    fn default_or(arg: Option<&String>, fallback: Option<&String>) -> anyhow::Result<String> {
-        let arg = match arg {
-            None => match fallback {
-                Some(fallback) => fallback,
-                None => {
-                    anyhow::bail!("failed to find fallback git remote");
-                }
-            },
-            Some(arg) => arg,
-        };
-
-        Ok(arg.clone())
-    }
+fn default_or(arg: Option<&String>, fallback: Option<&String>) -> anyhow::Result<String> {
+    let arg = match arg {
+        None => match fallback {
+            Some(fallback) => fallback,
+            None => {
+                anyhow::bail!("failed to find fallback git remote");
+            }
+        },
+        Some(arg) => arg,
+    };
+    Ok(arg.clone())
 }
