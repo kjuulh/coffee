@@ -165,6 +165,47 @@ impl GiteaClient {
             .context("failed to get repository")
     }
 
+    pub async fn get_repos(
+        &self,
+        owner: &str,
+        limit: i32,
+    ) -> anyhow::Result<Vec<gitea_client::models::Repository>> {
+        let mut repos = self.get_repos_inner(owner, 1).await?.unwrap_or(Vec::new());
+        let mut current_page = 2;
+
+        while let Some(mut new_repos) = self.get_repos_inner(owner, current_page).await? {
+            current_page += 1;
+            repos.append(&mut new_repos);
+
+            if repos.len() > (limit as usize) {
+                tracing::info!("reached limit, aborting");
+                break;
+            }
+        }
+
+        repos.sort_by(|a, b| a.full_name.cmp(&b.full_name));
+
+        Ok(repos)
+    }
+
+    async fn get_repos_inner(
+        &self,
+        owner: &str,
+        page: i32,
+    ) -> anyhow::Result<Option<Vec<gitea_client::models::Repository>>> {
+        tracing::info!("fetching repos for {} at page: {}", owner, page);
+        let repos =
+            gitea_client::apis::user_api::user_list_repos(&self.config, owner, Some(page), None)
+                .await
+                .context("failed to list repositories for owner")?;
+
+        if repos.is_empty() {
+            Ok(None)
+        } else {
+            Ok(Some(repos))
+        }
+    }
+
     pub async fn list_open_pull_requests(
         &self,
         owner: &str,
@@ -209,7 +250,12 @@ impl Repo {
 
     fn repo() -> Command {
         clap::Command::new("repo")
-            .subcommands(&[Self::repo_create(), Self::repo_view(), Self::repo_clone()])
+            .subcommands(&[
+                Self::repo_create(),
+                Self::repo_view(),
+                Self::repo_clone(),
+                Self::repo_list(),
+            ])
             .subcommand_required(true)
             .subcommand_help_heading("repo")
     }
@@ -221,7 +267,16 @@ impl Repo {
     }
 
     fn repo_clone() -> Command {
-        clap::Command::new("clone").arg(clap::Arg::new("repo"))
+        clap::Command::new("clone")
+            .arg(clap::Arg::new("repo"))
+            .arg(clap::Arg::new("name"))
+    }
+
+    fn repo_list() -> Command {
+        clap::Command::new("list")
+            .arg(clap::Arg::new("owner"))
+            //.arg(clap::Arg::new("visibility").long("visibility"))
+            .arg(clap::Arg::new("limit").long("limit"))
     }
 
     fn repo_view() -> Command {
@@ -304,6 +359,41 @@ impl Repo {
                     None => anyhow::bail!("failed to find a valid link to repository"),
                 }
             }
+            Some(("list", args)) => {
+                let owner = args
+                    .get_one::<String>("owner")
+                    .map(|n| Ok(n.clone()))
+                    .unwrap_or_else(|| {
+                        inquire::Text::new("owner")
+                            .with_help_message("the owner to list repositories from")
+                            .prompt()
+                            .map(|x| x.to_string())
+                    })?;
+
+                // let visibility = args
+                //     .get_one::<String>("visibility")
+                //     .map(|n| Ok(n.clone()))
+                //     .unwrap_or_else(|| {
+                //         inquire::Select::new("name", vec!["private", "public"])
+                //             .with_vim_mode(true)
+                //             .with_help_message("the visibility of the repository")
+                //             .prompt()
+                //             .map(|x| x.to_string())
+                //     })?
+                //     .into();
+
+                let limit = args
+                    .get_one::<String>("limit")
+                    .unwrap_or(&"100".to_string())
+                    .to_owned()
+                    .parse::<i32>()?;
+
+                let repos = self.client.get_repos(&owner, limit).await?;
+
+                for repo in repos {
+                    println!("{}", repo.full_name.unwrap());
+                }
+            }
 
             Some(("clone", args)) => {
                 let repository = args.get_one::<String>("repo");
@@ -315,6 +405,7 @@ impl Repo {
                         .prompt()?,
                     Some(repo) => repo.clone(),
                 };
+                let name = args.get_one::<String>("name");
 
                 let repo = match repository.split_once("/") {
                     Some((owner, repository)) => self.client.get_repo(owner, repository).await?,
@@ -331,9 +422,14 @@ impl Repo {
                 };
 
                 if let Some(ssh_url) = repo.ssh_url {
+                    let mut args = vec!["clone", &ssh_url];
+
+                    if let Some(name) = name {
+                        args.push(name.as_str());
+                    }
+
                     let output = tokio::process::Command::new("git")
-                        .arg("clone")
-                        .arg(&ssh_url)
+                        .args(args.as_slice())
                         .output()
                         .await?;
 
