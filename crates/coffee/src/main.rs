@@ -209,7 +209,7 @@ impl Repo {
 
     fn repo() -> Command {
         clap::Command::new("repo")
-            .subcommands(&[Self::repo_create(), Self::repo_view()])
+            .subcommands(&[Self::repo_create(), Self::repo_view(), Self::repo_clone()])
             .subcommand_required(true)
             .subcommand_help_heading("repo")
     }
@@ -218,6 +218,10 @@ impl Repo {
         clap::Command::new("create")
             .arg(clap::Arg::new("visibility").long("visibility"))
             .arg(clap::Arg::new("name").long("name"))
+    }
+
+    fn repo_clone() -> Command {
+        clap::Command::new("clone").arg(clap::Arg::new("repo"))
     }
 
     fn repo_view() -> Command {
@@ -300,6 +304,49 @@ impl Repo {
                     None => anyhow::bail!("failed to find a valid link to repository"),
                 }
             }
+
+            Some(("clone", args)) => {
+                let repository = args.get_one::<String>("repo");
+                let repository = match repository {
+                    None => inquire::Text::new("repo")
+                        .with_help_message(
+                            "Please entire repository owner and name (kjuulh/coffee or just coffee) eg.",
+                        )
+                        .prompt()?,
+                    Some(repo) => repo.clone(),
+                };
+
+                let repo = match repository.split_once("/") {
+                    Some((owner, repository)) => self.client.get_repo(owner, repository).await?,
+                    None => {
+                        self.client
+                            .get_repo(std::env::var("COFFEE_OWNER")?.as_str(), &repository)
+                            .await?
+                    }
+                };
+
+                if let Some(ssh_url) = repo.ssh_url {
+                    let output = tokio::process::Command::new("git")
+                        .arg("clone")
+                        .arg(&ssh_url)
+                        .output()
+                        .await?;
+
+                    let stdout = output.stdout;
+                    let stdout = std::str::from_utf8(stdout.as_slice())?;
+                    let stderr = output.stderr;
+                    let stderr = std::str::from_utf8(stderr.as_slice())?;
+                    println!("{}", stdout);
+                    println!("{}", stderr);
+
+                    if !output.status.success() {
+                        anyhow::bail!("failed to clone repository using link: {ssh_url}");
+                    }
+
+                    println!("successfully cloned repository {}", repo.name.unwrap());
+                }
+            }
+
             _ => todo!(),
         }
 
