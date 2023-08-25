@@ -320,7 +320,12 @@ impl Repo {
                     Some((owner, repository)) => self.client.get_repo(owner, repository).await?,
                     None => {
                         self.client
-                            .get_repo(std::env::var("COFFEE_OWNER")?.as_str(), &repository)
+                            .get_repo(
+                                std::env::var("COFFEE_OWNER")
+                                    .context("failed to find the COFFEE_OWNER variable, use that or set a fully qualified name: kjuulh/coffee eg.")?
+                                    .as_str(),
+                                &repository,
+                            )
                             .await?
                     }
                 };
@@ -336,8 +341,12 @@ impl Repo {
                     let stdout = std::str::from_utf8(stdout.as_slice())?;
                     let stderr = output.stderr;
                     let stderr = std::str::from_utf8(stderr.as_slice())?;
-                    println!("{}", stdout);
-                    println!("{}", stderr);
+                    if !stdout.is_empty() {
+                        println!("{}", stdout);
+                    }
+                    if !stderr.is_empty() {
+                        println!("{}", stderr);
+                    }
 
                     if !output.status.success() {
                         anyhow::bail!("failed to clone repository using link: {ssh_url}");
