@@ -3,7 +3,7 @@ use std::sync::Arc;
 use anyhow::Context;
 use clap::{ArgMatches, Command};
 use git_url_parse::GitUrl;
-use gitea_client::apis::configuration::{ApiKey, Configuration};
+use gitea_rs::apis::configuration::{ApiKey, Configuration};
 use tracing::Level;
 
 #[tokio::main]
@@ -31,10 +31,10 @@ async fn main() -> anyhow::Result<()> {
     let url = cli.get_one::<String>("url").unwrap();
     let token = cli.get_one::<String>("token").unwrap();
 
-    let gitea_client = Arc::new(GiteaClient::new(url.to_owned(), token.to_owned()));
+    let gitea_rs = Arc::new(GiteaClient::new(url.to_owned(), token.to_owned()));
 
-    let repo = Repo::new(gitea_client.clone());
-    let pull_request = PullRequest::new(gitea_client.clone());
+    let repo = Repo::new(gitea_rs.clone());
+    let pull_request = PullRequest::new(gitea_rs.clone());
 
     match cli.subcommand() {
         Some(("pull-request", args)) => pull_request.handle_pr(args).await?,
@@ -134,10 +134,10 @@ impl GiteaClient {
         &self,
         name: &str,
         visibility: Visibility,
-    ) -> anyhow::Result<gitea_client::models::Repository> {
-        gitea_client::apis::user_api::create_current_user_repo(
+    ) -> anyhow::Result<gitea_rs::models::Repository> {
+        gitea_rs::apis::user_api::create_current_user_repo(
             &self.config,
-            Some(gitea_client::models::CreateRepoOption {
+            Some(gitea_rs::models::CreateRepoOption {
                 auto_init: None,
                 default_branch: Some("main".into()),
                 description: None,
@@ -149,6 +149,7 @@ impl GiteaClient {
                 readme: None,
                 template: None,
                 trust_model: None,
+                object_format_name: None,
             }),
         )
         .await
@@ -159,8 +160,8 @@ impl GiteaClient {
         &self,
         owner: &str,
         name: &str,
-    ) -> anyhow::Result<gitea_client::models::Repository> {
-        gitea_client::apis::repository_api::repo_get(&self.config, owner, name)
+    ) -> anyhow::Result<gitea_rs::models::Repository> {
+        gitea_rs::apis::repository_api::repo_get(&self.config, owner, name)
             .await
             .context("failed to get repository")
     }
@@ -169,7 +170,7 @@ impl GiteaClient {
         &self,
         owner: &str,
         limit: i32,
-    ) -> anyhow::Result<Vec<gitea_client::models::Repository>> {
+    ) -> anyhow::Result<Vec<gitea_rs::models::Repository>> {
         let mut repos = self.get_repos_inner(owner, 1).await?.unwrap_or(Vec::new());
         let mut current_page = 2;
 
@@ -192,10 +193,10 @@ impl GiteaClient {
         &self,
         owner: &str,
         page: i32,
-    ) -> anyhow::Result<Option<Vec<gitea_client::models::Repository>>> {
+    ) -> anyhow::Result<Option<Vec<gitea_rs::models::Repository>>> {
         tracing::info!("fetching repos for {} at page: {}", owner, page);
         let repos =
-            gitea_client::apis::user_api::user_list_repos(&self.config, owner, Some(page), None)
+            gitea_rs::apis::user_api::user_list_repos(&self.config, owner, Some(page), None)
                 .await
                 .context("failed to list repositories for owner")?;
 
@@ -210,7 +211,7 @@ impl GiteaClient {
         &self,
         owner: &str,
         repo: &str,
-    ) -> anyhow::Result<Vec<gitea_client::models::PullRequest>> {
+    ) -> anyhow::Result<Vec<gitea_rs::models::PullRequest>> {
         self.list_pull_requests(owner, repo, Some("open")).await
     }
 
@@ -219,8 +220,8 @@ impl GiteaClient {
         owner: &str,
         repo: &str,
         state: Option<&str>,
-    ) -> anyhow::Result<Vec<gitea_client::models::PullRequest>> {
-        let pr = gitea_client::apis::repository_api::repo_list_pull_requests(
+    ) -> anyhow::Result<Vec<gitea_rs::models::PullRequest>> {
+        let pr = gitea_rs::apis::repository_api::repo_list_pull_requests(
             &self.config,
             owner,
             repo,
@@ -242,10 +243,8 @@ struct Repo {
 }
 
 impl Repo {
-    pub fn new(gitea_client: Arc<GiteaClient>) -> Self {
-        Self {
-            client: gitea_client,
-        }
+    pub fn new(gitea_rs: Arc<GiteaClient>) -> Self {
+        Self { client: gitea_rs }
     }
 
     fn repo() -> Command {
@@ -464,10 +463,8 @@ struct PullRequest {
 }
 
 impl PullRequest {
-    pub fn new(gitea_client: Arc<GiteaClient>) -> Self {
-        Self {
-            client: gitea_client,
-        }
+    pub fn new(gitea_rs: Arc<GiteaClient>) -> Self {
+        Self { client: gitea_rs }
     }
 
     fn pull_request() -> Command {
