@@ -1,13 +1,18 @@
 # yaml-language-server: $schema=https://git.front.kjuulh.io/kjuulh/cuddle/raw/branch/main/schemas/base.json
 
-base: false
+base: "git@git.front.kjuulh.io:kjuulh/cuddle-rust-cli-plan.git"
 
 vars:
   service: "coffee"
   registry: kasperhermansen
 
-scripts:
-  generate_client:
-    type: shell
-  install:
-    type: shell
+please:
+  project:
+    owner: kjuulh
+    repository: coffee
+    branch: main
+  settings:
+    api_url: https://git.front.kjuulh.io  
+  actions:
+    rust:
+
