@@ -6,6 +6,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2024-11-08
+
+### Fixed
+- *(deps)* update rust crate url to v2.5.3
+- *(deps)* update rust crate reqwest to v0.12.9
+- *(deps)* update rust crate serde_json to v1.0.132
+- *(deps)* update rust crate serde_json to v1.0.129
+- *(deps)* update rust crate reqwest to v0.12.8
+- *(deps)* update rust crate webbrowser to v1.0.2
+- *(deps)* update rust crate serde_json to v1.0.127
+- *(deps)* update rust crate serde_json to v1.0.126
+
+### Other
+- *(deps)* update rust crate tokio to v1.41.1
+- *(deps)* update rust crate anyhow to v1.0.93
+- *(deps)* update rust crate anyhow to v1.0.92
+- *(deps)* update all dependencies
+- *(deps)* update all dependencies
+- *(deps)* update rust crate clap to v4.5.20
+- *(deps)* update rust crate clap to v4.5.19
+- *(deps)* update rust crate axum to v0.7.7
+- *(deps)* update all dependencies
+- *(deps)* update rust crate anyhow to v1.0.89
+- *(deps)* update rust crate anyhow to v1.0.88
+- *(deps)* update all dependencies
+- *(deps)* update all dependencies
+- *(deps)* update rust crate tokio to v1.40.0
+- *(deps)* update all dependencies (#14)
+
 ## [0.1.0] - 2024-08-21
 
 ### Added
