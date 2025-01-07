@@ -3,7 +3,7 @@ use std::sync::Arc;
 use anyhow::Context;
 use clap::{ArgMatches, Command};
 use git_url_parse::GitUrl;
-use gitea_rs::apis::configuration::{ApiKey, Configuration};
+use gitea_client::apis::configuration::Configuration;
 use tracing::Level;
 
 #[tokio::main]
@@ -31,10 +31,10 @@ async fn main() -> anyhow::Result<()> {
     let url = cli.get_one::<String>("url").unwrap();
     let token = cli.get_one::<String>("token").unwrap();
 
-    let gitea_rs = Arc::new(GiteaClient::new(url.to_owned(), token.to_owned()));
+    let gitea_client = Arc::new(GiteaClient::new(url.to_owned(), token.to_owned()));
 
-    let repo = Repo::new(gitea_rs.clone());
-    let pull_request = PullRequest::new(gitea_rs.clone());
+    let repo = Repo::new(gitea_client.clone());
+    let pull_request = PullRequest::new(gitea_client.clone());
 
     match cli.subcommand() {
         Some(("pull-request", args)) => pull_request.handle_pr(args).await?,
@@ -134,10 +134,10 @@ impl GiteaClient {
         &self,
         name: &str,
         visibility: Visibility,
-    ) -> anyhow::Result<gitea_rs::models::Repository> {
-        gitea_rs::apis::user_api::create_current_user_repo(
+    ) -> anyhow::Result<gitea_client::models::Repository> {
+        gitea_client::apis::user_api::create_current_user_repo(
             &self.config,
-            Some(gitea_rs::models::CreateRepoOption {
+            Some(gitea_client::models::CreateRepoOption {
                 auto_init: None,
                 default_branch: Some("main".into()),
                 description: None,
@@ -156,12 +156,41 @@ impl GiteaClient {
         .context("failed to create repository")
     }
 
+    pub async fn create_pull_request(
+        &self,
+        owner: &str,
+        repo: &str,
+        head: &str,
+        base: Option<impl Into<String>>,
+        title: &str,
+        text: &str,
+    ) -> anyhow::Result<gitea_client::models::PullRequest> {
+        gitea_client::apis::repository_api::repo_create_pull_request(
+            &self.config,
+            owner,
+            repo,
+            Some(gitea_client::models::CreatePullRequestOption {
+                assignee: None,
+                assignees: None,
+                base: base.map(|b| b.into()),
+                body: Some(text.into()),
+                due_date: None,
+                head: Some(head.into()),
+                labels: None,
+                milestone: None,
+                title: Some(title.into()),
+            }),
+        )
+        .await
+        .context("failed to create pull request")
+    }
+
     pub async fn get_repo(
         &self,
         owner: &str,
         name: &str,
-    ) -> anyhow::Result<gitea_rs::models::Repository> {
-        gitea_rs::apis::repository_api::repo_get(&self.config, owner, name)
+    ) -> anyhow::Result<gitea_client::models::Repository> {
+        gitea_client::apis::repository_api::repo_get(&self.config, owner, name)
             .await
             .context("failed to get repository")
     }
@@ -170,7 +199,7 @@ impl GiteaClient {
         &self,
         owner: &str,
         limit: i32,
-    ) -> anyhow::Result<Vec<gitea_rs::models::Repository>> {
+    ) -> anyhow::Result<Vec<gitea_client::models::Repository>> {
         let mut repos = self.get_repos_inner(owner, 1).await?.unwrap_or(Vec::new());
         let mut current_page = 2;
 
@@ -193,10 +222,10 @@ impl GiteaClient {
         &self,
         owner: &str,
         page: i32,
-    ) -> anyhow::Result<Option<Vec<gitea_rs::models::Repository>>> {
+    ) -> anyhow::Result<Option<Vec<gitea_client::models::Repository>>> {
         tracing::info!("fetching repos for {} at page: {}", owner, page);
         let repos =
-            gitea_rs::apis::user_api::user_list_repos(&self.config, owner, Some(page), None)
+            gitea_client::apis::user_api::user_list_repos(&self.config, owner, Some(page), None)
                 .await
                 .context("failed to list repositories for owner")?;
 
@@ -211,7 +240,7 @@ impl GiteaClient {
         &self,
         owner: &str,
         repo: &str,
-    ) -> anyhow::Result<Vec<gitea_rs::models::PullRequest>> {
+    ) -> anyhow::Result<Vec<gitea_client::models::PullRequest>> {
         self.list_pull_requests(owner, repo, Some("open")).await
     }
 
@@ -220,8 +249,8 @@ impl GiteaClient {
         owner: &str,
         repo: &str,
         state: Option<&str>,
-    ) -> anyhow::Result<Vec<gitea_rs::models::PullRequest>> {
-        let pr = gitea_rs::apis::repository_api::repo_list_pull_requests(
+    ) -> anyhow::Result<Vec<gitea_client::models::PullRequest>> {
+        let pr = gitea_client::apis::repository_api::repo_list_pull_requests(
             &self.config,
             owner,
             repo,
@@ -243,8 +272,10 @@ struct Repo {
 }
 
 impl Repo {
-    pub fn new(gitea_rs: Arc<GiteaClient>) -> Self {
-        Self { client: gitea_rs }
+    pub fn new(gitea_client: Arc<GiteaClient>) -> Self {
+        Self {
+            client: gitea_client,
+        }
     }
 
     fn repo() -> Command {
@@ -327,12 +358,12 @@ impl Repo {
 
                     if let Some(ssh) = &repo.ssh_url {
                         std::process::Command::new("git")
-                            .args(&["remote", "add", &remote_name, &ssh])
+                            .args(["remote", "add", &remote_name, ssh])
                             .spawn()?
                             .wait()?;
                     } else if let Some(http) = &repo.clone_url {
                         std::process::Command::new("git")
-                            .args(&["remote", "add", &remote_name, &http])
+                            .args(["remote", "add", &remote_name, http])
                             .spawn()?
                             .wait()?;
                     }
@@ -463,8 +494,10 @@ struct PullRequest {
 }
 
 impl PullRequest {
-    pub fn new(gitea_rs: Arc<GiteaClient>) -> Self {
-        Self { client: gitea_rs }
+    pub fn new(gitea_client: Arc<GiteaClient>) -> Self {
+        Self {
+            client: gitea_client,
+        }
     }
 
     fn pull_request() -> Command {
@@ -488,6 +521,11 @@ impl PullRequest {
 
     fn pull_request_create() -> Command {
         clap::Command::new("create")
+            .arg(clap::Arg::new("base").short('b'))
+            .arg(clap::Arg::new("head").short('H'))
+            .arg(clap::Arg::new("repo").help("<owner>/<repo>"))
+            .arg(clap::Arg::new("title"))
+            .arg(clap::Arg::new("body"))
     }
 
     fn pull_request_list() -> Command {
@@ -518,7 +556,46 @@ impl PullRequest {
         let repo = default_or(repo, git.map(|(_, repo)| repo))?;
 
         match args.subcommand() {
-            Some(("create", _args)) => todo!(),
+            Some(("create", args)) => {
+                let base = args.get_one::<String>("base");
+                let head = if let Some(branch) = args.get_one::<String>("head") {
+                    branch.clone()
+                } else {
+                    inquire::prompt_text("your branch name")
+                        .context("failed to get head from user")?
+                };
+
+                let repo = if let Some(repo) = args.get_one::<String>("repo") {
+                    repo.split_once("/")
+                        .map(|(a, b)| (a.to_string(), b.to_string()))
+                } else {
+                    self.client.get_git()?
+                };
+
+                let (owner, repo) = repo.ok_or(anyhow::anyhow!("failed to find repo for user"))?;
+
+                let title = if let Some(title) = args.get_one::<String>("title") {
+                    title.clone()
+                } else {
+                    inquire::prompt_text("title for the pull request")
+                        .context("failed to get title for the pullrequest")?
+                };
+                let description = if let Some(description) = args.get_one::<String>("body") {
+                    description.clone()
+                } else {
+                    inquire::prompt_text("description for the pull request")
+                        .context("failed to get description for the pullrequest")?
+                };
+
+                let pr = self
+                    .client
+                    .create_pull_request(&owner, &repo, &head, base, &title, &description)
+                    .await?;
+
+                if let Some(url) = pr.html_url {
+                    webbrowser::open(&url)?;
+                }
+            }
             Some(("list", _args)) => {
                 let pull_requests = self.client.list_open_pull_requests(&owner, &repo).await?;
                 for pull_request in pull_requests {

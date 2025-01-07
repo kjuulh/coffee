@@ -268,7 +268,7 @@ dependencies = [
  "clap",
  "dotenv",
  "git-url-parse",
- "gitea-rs",
+ "gitea-client",
  "inquire",
  "reqwest",
  "serde_json",
@@ -516,9 +516,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "gitea-rs"
+name = "gitea-client"
 version = "1.22.1"
-source = "git+https://git.front.kjuulh.io/kjuulh/gitea-rs?branch=main#cfae922b889fe20dcd463d96e493926822ea7cda"
+source = "git+https://git.front.kjuulh.io/kjuulh/gitea-rs?branch=main#9f6e0cdc80210fa2550c5a1f7a224f682ae55735"
 dependencies = [
  "reqwest",
  "serde",

@@ -4,7 +4,7 @@ resolver = "2"
 
 [workspace.dependencies]
 coffee = { path = "crates/coffee" }
-gitea-rs = { git = "https://git.front.kjuulh.io/kjuulh/gitea-rs", branch = "main" }
+gitea-client = { git = "https://git.front.kjuulh.io/kjuulh/gitea-rs", branch = "main" }
 
 anyhow = { version = "1.0.74" }
 tokio = { version = "1", features = ["full"] }
