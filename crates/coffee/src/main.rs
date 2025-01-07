@@ -130,6 +130,31 @@ impl GiteaClient {
         Ok(None)
     }
 
+    fn get_base_branch(&self) -> anyhow::Result<Option<String>> {
+        match std::process::Command::new("git")
+            .args(["remote", "show", "origin"])
+            .output()
+        {
+            Ok(output) => {
+                let output = std::str::from_utf8(&output.stdout)?;
+                for line in output.lines() {
+                    if line.trim().starts_with("HEAD branch: ") {
+                        return Ok(Some(
+                            line.trim().trim_start_matches("HEAD branch: ").to_string(),
+                        ));
+                    }
+                }
+
+                tracing::info!("found no head branch for origin");
+                Ok(None)
+            }
+            Err(_) => {
+                tracing::warn!("failed to query git");
+                Ok(None)
+            }
+        }
+    }
+
     pub async fn create_repo(
         &self,
         name: &str,
@@ -161,7 +186,7 @@ impl GiteaClient {
         owner: &str,
         repo: &str,
         head: &str,
-        base: Option<impl Into<String>>,
+        base: &str,
         title: &str,
         text: &str,
     ) -> anyhow::Result<gitea_client::models::PullRequest> {
@@ -172,7 +197,7 @@ impl GiteaClient {
             Some(gitea_client::models::CreatePullRequestOption {
                 assignee: None,
                 assignees: None,
-                base: base.map(|b| b.into()),
+                base: Some(base.into()),
                 body: Some(text.into()),
                 due_date: None,
                 head: Some(head.into()),
@@ -521,11 +546,11 @@ impl PullRequest {
 
     fn pull_request_create() -> Command {
         clap::Command::new("create")
-            .arg(clap::Arg::new("base").short('b'))
-            .arg(clap::Arg::new("head").short('H'))
-            .arg(clap::Arg::new("repo").help("<owner>/<repo>"))
-            .arg(clap::Arg::new("title"))
-            .arg(clap::Arg::new("body"))
+            .arg(clap::Arg::new("base").short('b').long("base"))
+            .arg(clap::Arg::new("head").short('H').long("head"))
+            .arg(clap::Arg::new("repo").help("<owner>/<repo>").long("repo"))
+            .arg(clap::Arg::new("title").long("title"))
+            .arg(clap::Arg::new("body").long("body"))
     }
 
     fn pull_request_list() -> Command {
@@ -557,7 +582,14 @@ impl PullRequest {
 
         match args.subcommand() {
             Some(("create", args)) => {
-                let base = args.get_one::<String>("base");
+                let base = if let Some(base) = args.get_one::<String>("base") {
+                    base.clone()
+                } else if let Some(base) = self.client.get_base_branch()? {
+                    base
+                } else {
+                    inquire::prompt_text("your base branch name, usually main or master")
+                        .context("failed to get base from user")?
+                };
                 let head = if let Some(branch) = args.get_one::<String>("head") {
                     branch.clone()
                 } else {
@@ -589,10 +621,19 @@ impl PullRequest {
 
                 let pr = self
                     .client
-                    .create_pull_request(&owner, &repo, &head, base, &title, &description)
+                    .create_pull_request(&owner, &repo, &head, &base, &title, &description)
                     .await?;
 
+                tracing::info!(
+                    "created pull request at: {}",
+                    pr.html_url.clone().unwrap_or_default()
+                );
+
                 if let Some(url) = pr.html_url {
+                    webbrowser::open(&url)?;
+                }
+
+                if let Some(url) = pr.url {
                     webbrowser::open(&url)?;
                 }
             }
