@@ -13,7 +13,7 @@ tracing-subscriber = { version = "0.3.17" }
 clap = { version = "4.3.21", features = ["derive", "env"] }
 dotenv = { version = "0.15.0" }
 axum = { version = "0.8.0" }
-inquire = { version = "0.7.0" }
+inquire = { version = "0.7.0", features = ["editor"] }
 
 [workspace.package]
 version = "0.1.0"

@@ -607,13 +607,36 @@ impl PullRequest {
                 let (owner, repo) = repo.ok_or(anyhow::anyhow!("failed to find repo for user"))?;
 
                 let title = if let Some(title) = args.get_one::<String>("title") {
-                    title.clone()
+                    inquire::Text::new("title")
+                        .with_help_message("title for the pull request")
+                        .with_initial_value(title)
+                        .prompt()
+                        .context("failed to get title for the pullrequest")?
                 } else {
                     inquire::prompt_text("title for the pull request")
                         .context("failed to get title for the pullrequest")?
                 };
                 let description = if let Some(description) = args.get_one::<String>("body") {
-                    description.clone()
+                    let mut description = description.trim().to_string();
+                    if description.contains("diff --git") {
+                        tracing::debug!("cleaning up git diff from message");
+
+                        let mut output = Vec::new();
+                        for line in description.lines() {
+                            if line.starts_with("diff --git") {
+                                break;
+                            }
+
+                            output.push(line)
+                        }
+
+                        description = output.join("\n").trim().to_string();
+                    }
+
+                    inquire::Editor::new("description for the pull request")
+                        .with_predefined_text(&description)
+                        .prompt()
+                        .context("failed to get description for the pullrequest")?
                 } else {
                     inquire::prompt_text("description for the pull request")
                         .context("failed to get description for the pullrequest")?
